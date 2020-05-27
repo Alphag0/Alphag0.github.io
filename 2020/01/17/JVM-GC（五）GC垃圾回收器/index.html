@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scaleable=0" name="viewport">
+	<title>Zaccheus | blog</title>
+	
+<link rel="stylesheet" href="/css/style.css">
+
+	
+<link rel="stylesheet" href="/css/third%20party/jquery.fancybox.css">
+
+	<link rel="icon" href="/images/avatar.jpg">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+	<body>
+		<header class="header">
+	<div class="header_top">
+		<span class="theme">
+			<a href="/">
+				Zaccheus | blog
+			</a>	
+		</span>
+		<nav class="navbar">
+			<ul class="menu">
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/" class="menu-item-link">
+							首页
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/categories" class="menu-item-link">
+							分类
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/archives" class="menu-item-link">
+							归档
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/tags" class="menu-item-link">
+							标签
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/about" class="menu-item-link">
+							关于我
+						</a>
+					</li>
+					
+			</ul>
+		</nav>
+	</div>
+	<i id="homelink" data-link="http://alphag0.github.io/"></i>
+	<div class="header_bottom">
+		<div class="blog-title">
+			<div class="descrs">
+				<div class="descr">湛湛的个人博客</div>
+				<br>
+				<div class="descr">" 聪明在于学习 , 天才在于积累 "</div>
+			</div>
+			<div class="blog-down">
+				<a href="javascript:void(0);">
+					<i class="fa fa-angle-double-down fa-2x"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+		<main class="main">
+			<section class="posts">
+	<article class="post_full"> 
+	<h1 class="post-title">
+		<div class="post-title-link">
+			JVM&GC（五）GC垃圾回收器
+		</div>
+	</h1>
+	
+	<div class="post-info">
+		<div class="post-date">
+				<i class="fa fa-calendar"></i>&nbsp2020-01-17&nbsp&nbsp&nbsp
+		</div>
+		
+				<span class="post-words">
+					<i class="fa fa-pencil-square-o"></i>&nbsp2.9k&nbsp字&nbsp&nbsp
+				</span>
+				<span class="post-time">
+					<i class="fa fa-clock-o"></i>&nbsp10 分钟&nbsp&nbsp&nbsp
+				</span>
+		
+		<div class="post-tags">
+			
+    
+        <i class="fa fa-tags"></i>  <a href="/tags/JVM-GC/"> JVM&GC</a>
+    
+		</div>
+	</div>
+	<div class="post-content">
+		<h1 id="GC垃圾回收器"><a href="#GC垃圾回收器" class="headerlink" title="GC垃圾回收器"></a>GC垃圾回收器</h1><blockquote>
+<p>GC垃圾回收器是JVM中自动内存管理机制的具体实现，在HotSpot虚拟机中GC的工作主要划分为两大类，分别是内存动态分配和垃圾回收，在内存执行分配之前，GC首先会对内存空间进行划分，考虑到JVM中存活对象的生命周期会具有两极化，应该采取不同的垃圾收集策略，分代收集可以实现这个目标，目前几乎所有的GC都是采用分代收集算法执行垃圾回收</p>
+<p>一般来说当内存空间中的内存消耗到达一定阈值之后，GC就会执行垃圾回收，而且回收算法必须非常准确，定不能造成内存中存活的对象被错误的回收掉，也不能造成已经死亡的对象没有及时回收，而且GC执行内存回收的时候应该做到高效，不应该导致程序长时间的暂停，以及要避免产生内存碎片，不过Gc回收垃圾的时候不可避免的会产生碎片，因为被回收的对象空间不是连续的，这样一来会导致没有足够的空间分配给大内存对象，不过可以通过压缩算法来消除碎片</p>
+<p>可以通过以下六点来评估一个GC的性能</p>
+<ol>
+<li>吞吐量:程序的运行时间(程序时间+回收时间)</li>
+<li>垃圾回收开销:吞吐量的补数，垃圾回收器所占时间与总时间的比例</li>
+<li>暂停时间:执行垃圾回收的时候，程序的工作线程被暂停的时间</li>
+<li>收集频率:相对于程序的执行，收集操作发生的频率</li>
+<li>堆空间: Java堆占用的空间大小</li>
+<li>快速:一个对象从创建到被回收所经历的时间</li>
+</ol>
+</blockquote>
+<h2 id="垃圾回收器分类"><a href="#垃圾回收器分类" class="headerlink" title="垃圾回收器分类"></a>垃圾回收器分类</h2><p>由于JDK的高速迭代，Java到现在已经衍生了很多版本的Gc，比如Serial/Serial Old收集器，ParNew收集器，Paralle/Parallel Old收集器，CMS(Concurrent-Mark-Sweep)收集器，以及从JDK7U4版本开始的出现的GI(Garbage-First)收集器等</p>
+<p>按照不同的划分角度，可以将GC分为不同的类型</p>
+<p>按照<code>线程数</code>划分可以分为串行垃圾回收器和并行垃圾回收器</p>
+<ul>
+<li>串行回收指的是同一段时间内只允许一件事情发生，当有多个CPU的时候也只能有一个CPU用于执行垃圾回收操作，并且在执行回收的时候，程序中的工作线程会被暂停，回收结束后才会恢复，这就是串行回收，一般情况下串行回收被用在client模式下，和串行回收相反，并行回收可以使用多个CPU来执行垃圾回收，因此提升了应用的吞吐量，不过并行回收仍然使用STW和复制算法串行回收有两个特点:首先它仅仅使用单个线程进行垃圾回收，其次它是独占式的垃圾回收方式</li>
+<li>年轻代串行回收器使用复制算法，实现相对简单，逻辑处理特别高效，而且没有额外的线程切换开销，在诸如单CPU或者较小的应用内存等硬件平台，它的性能可以超过并行回收器并行收集器是工作在新生代垃圾回收器，它只是简单的将串行回收器多线程话，它的回收策略算法以及参数和串行一致，并行回收器也是独占式的回收器，在收集过程中，也会STw，不过在并发能力强的CPU上面，它产生的停顿时间小于串行收集器，效率更高</li>
+</ul>
+<p>按照<code>工作模式</code>分可以划分为并发式回收器和独占式回收器，并发式(注意不是并行)回收器与应用程序线程交替执行，以尽量减少应用程序的停顿时间，独占式垃圾回收器一旦运行就停止应用中的其他线程，直到回收结束</p>
+<p>按照<code>碎片处理</code>方式分可以分为压缩式垃圾回收器和非压缩式垃圾回器，压缩式垃圾回收器会在回收完成后堆存货对象进行压缩整理，消除回收后的碎片，非压缩式的垃圾回收器不会进行此过程</p>
+<p>按照<code>工作内存区间</code>划分又可以分为年轻代垃圾回收器和年老代垃圾回收器</p>
+<h2 id="常见的垃圾回收器"><a href="#常见的垃圾回收器" class="headerlink" title="常见的垃圾回收器"></a>常见的垃圾回收器</h2><h3 id="Serial收集器"><a href="#Serial收集器" class="headerlink" title="Serial收集器"></a><strong>Serial收集器</strong></h3><p>​      串行收集器是最古老，最稳定以及效率高的收集器，可能会产生较长的停顿，只使用一个线程去回收。<strong>新生代、老年代使用**</strong>串行回收<strong><strong>；新生代复制算法、老年代</strong></strong>标记-压缩**；垃圾收集的过程中会Stop The World（服务暂停）</p>
+<p>参数控制：-XX:+UseSerialGC  串行收集器</p>
+<p>​                                       <img src="http://www.pianshen.com/images/647/9baf469eb409cb9fd00bbd2ee3f1330f.png" alt="img"></p>
+<p><strong>优点：</strong>是单线程的  也就是说它在运行的时候，所有的线程都得等着它</p>
+<p><strong>缺点：</strong>还是所有的线程都得等着它（会造成运行速度的变慢）   stop the world</p>
+<h3 id="ParNew收集器"><a href="#ParNew收集器" class="headerlink" title="ParNew收集器"></a><strong>ParNew收集器</strong></h3><p>ParNew收集器其实就是Serial收集器的多线程版本。<strong>新生代并行，老年代串行；新生代复制算法、老年代标记-压缩</strong></p>
+<p><strong>参数控制：</strong>-XX:+UseParNewGC  ParNew收集器</p>
+<p>​                  -XX:ParallelGCThreads 限制线程数量 </p>
+<p>​                                      </p>
+<p><strong>优点：</strong>使用的多线程。回收线程从一个变成了多个，把Serial的效率提高了</p>
+<p><strong>缺点**</strong>：**在这个时候只能运行回收线程，所有的非回收线程都被禁用 stop the world</p>
+<h3 id="Parallel收集器"><a href="#Parallel收集器" class="headerlink" title="Parallel收集器"></a><strong>Parallel收集器</strong></h3><p>Parallel Scavenge收集器类似ParNew收集器，Parallel收集器更关注系统的吞吐量。可以通过参数来打开自适应调节策略，虚拟机会根据当前系统的运行情况收集性能监控信息，动态调整这些参数以提供最合适的停顿时间或最大的吞吐量；也可以通过参数控制GC的时间不大于多少毫秒或者比例；新生代复制算法、老年代标记-压缩</p>
+<p>参数控制：-XX:+UseParallelGC  使用Parallel收集器+ 老年代串行</p>
+<p>​                                              <img src="http://www.pianshen.com/images/207/0c7aa3265dd000f50905862c7844d477.png" alt="img"></p>
+<h3 id="Parallel-Old-收集器"><a href="#Parallel-Old-收集器" class="headerlink" title="Parallel Old 收集器"></a><strong>Parallel Old 收集器</strong></h3><p>Parallel Old是Parallel Scavenge收集器的老年代版本，使用多线程和“标记－整理”算法。这个收集器是在JDK 1.6中才开始提供</p>
+<p>参数控制： -XX:+UseParallelOldGC 使用Parallel收集器+ 老年代并行</p>
+<h3 id="Parallel-Scavenge收集器-与Parallel-Old收集器区别："><a href="#Parallel-Scavenge收集器-与Parallel-Old收集器区别：" class="headerlink" title="Parallel Scavenge收集器**与Parallel Old收集器区别：**"></a><strong>Parallel Scavenge收集器**</strong>与<strong><strong>Parallel Old收集器</strong></strong>区别：**</h3><p>(二者一个新生代，一个老年代，区别就是所用算法不一样)</p>
+<p><strong>优点：</strong>回收效率进行了计算</p>
+<p><strong>缺点**</strong>：**在这个时候只能运行回收线程  所有的非回收线程都被禁用    stop the world</p>
+<h3 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a><strong>CMS收集器</strong></h3><p>​    这是垃圾回收器中唯一一个使用标记-清理算法的垃圾回收器。</p>
+<p>​    由于并发的原因，他的垃圾回收停顿时间会比较小，但是相应的牺牲了吞吐量，停顿时间短的好处是能提高用户体验，所以，他被广泛地用于B/S架构中。</p>
+<p>​    CMS垃圾回收器回收垃圾一般分为四步：</p>
+<p>​    初始标记：快速标记GCROOT能够关联到的对象，这个步骤会STW；</p>
+<p>​    并发标记；</p>
+<p>​    重新标记：此过程会STW，为了修正并发标记时，用户线程对标记的变化；</p>
+<p>​    并发清理：清理过程是并发的；</p>
+<p>​                                       <img src="http://www.pianshen.com/images/965/63065c3e6e3718a3377aecd2463364f5.png" alt="img"></p>
+<p> <strong>优点：</strong>并发收集、低停顿</p>
+<p> <strong>缺点：</strong>（1）会产生内存碎片（标记-清理带来的缺点）</p>
+<p>​           （2）牺牲了吞吐量，没有办法处理浮动的垃圾（ 浮动垃圾主要来自于 并发清除阶段 ）</p>
+<h3 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a><strong>G1收集器</strong></h3><p>​       G1是<strong>目前技术发展的最前沿成果之一</strong>，HotSpot开发团队赋予它的<strong>使命</strong>是未来可以替换掉JDK1.5中发布的CMS收集器。与CMS收集器相比G1收集器有以下特点：</p>
+<p>​       <strong>1. 空间整合</strong>，G1收集器采用标记整理算法，不会产生内存空间碎片。分配大对象时不会因为无法找到连续空间而提前触发下一次GC。</p>
+<p>​       <strong>2. 可预测停顿</strong>，这是G1的另一大优势，降低停顿时间是G1和CMS的共同关注点，但G1除了追求低停顿外，还能建立可预测的停顿时间模型，能让使用者明确指定在一个长度为N毫秒的时间片段内，消耗在垃圾收集上的时间不得超过N毫秒，这几乎已经是实时Java（RTSJ）的垃圾收集器的特征了。</p>
+<p>​      上面提到的垃圾收集器，收集的范围都是整个新生代或者老年代，而G1不再是这样。使用G1收集器时，Java堆的内存布局与其他收集器有很大差别，它将整个Java堆划分为多个大小相等的独立区域（Region），虽然还保留有新生代和老年代的概念，但新生代和老年代不再是物理隔阂了，它们都是一部分（可以不连续）Region的集合。</p>
+<p>​                       <img src="http://www.pianshen.com/images/290/82e3479977f514fe3679e26f2362d972.png" alt="img">    </p>
+<p>​       G1的新生代收集跟ParNew类似，当新生代占用达到一定比例的时候，开始出发收集。和CMS类似，G1收集器收集老年代对象  会有短暂停顿。</p>
+<h2 id="收集步骤："><a href="#收集步骤：" class="headerlink" title="收集步骤："></a><strong>收集步骤</strong>：</h2><p>1、<strong>标记阶段</strong>，首先初始标记(Initial-Mark),这个阶段是停顿的(Stop the World Event)，并且会触发一次普通Mintor GC。对应GC log:GC pause (young) (inital-mark)</p>
+<p>2、<strong>Root Region Scanning</strong>，程序运行过程中会回收survivor区(存活到老年代)，这一过程必须在young GC之前完成。</p>
+<p>3、<strong>Concurrent Marking</strong>，在整个堆中进行并发标记(和应用程序并发执行)，此过程可能被young GC中断。在并发标记阶段，若发现区域对象中的所有对象都是垃圾，那个这个区域会被立即回收(图中打X)。同时，并发标记过程中，会计算每个区域的对象活性(区域中存活对象的比例)。</p>
+<p>​                      <img src="http://www.pianshen.com/images/596/4cd59d8bf8458eb224be233ffc72f20c.png" alt="img"></p>
+<p>4、<strong>Remark</strong>, 再标记，会有短暂停顿(STW)。再标记阶段是用来收集 并发标记阶段 产生新的垃圾(并发阶段和应用程序一同运行)；G1中采用了比CMS更快的初始快照算法:snapshot-at-the-beginning (SATB)。</p>
+<p>5、<strong>Copy/Clean up</strong>，多线程清除失活对象，会有STW。G1将回收区域的存活对象拷贝到新区域，清除Remember Sets，并发清空回收区域并把它返回到空闲区域链表中。</p>
+<p>​                      <img src="http://www.pianshen.com/images/713/1054be60b7a074418c471aa855fcb3b1.png" alt="img">       </p>
+<p>6、复制/清除过程后。回收区域的活性对象已经被集中回收到深蓝色和深绿色区域。</p>
+<p>​                       <img src="http://www.pianshen.com/images/619/0e6c1cad71ce1491ebb0bb39fce89ab3.png" alt="img"></p>
+<p>本文转载自：<a href="https://blog.csdn.net/Snowing1234_5/article/details/96969366" target="_blank" rel="noopener">https://blog.csdn.net/Snowing1234_5/article/details/96969366</a></p>
+<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><ul>
+<li><a href="http://www.pianshen.com/article/2785690101/;jsessionid=E0DEA106D16CF43E807CF64BD65B0622" target="_blank" rel="noopener">GC 垃圾收集器</a></li>
+<li><a href="http://www.pianshen.com/article/2076793014/;jsessionid=E0DEA106D16CF43E807CF64BD65B0622" target="_blank" rel="noopener">GC 垃圾收集器</a></li>
+<li><a href="http://www.pianshen.com/article/9553793016/;jsessionid=E0DEA106D16CF43E807CF64BD65B0622" target="_blank" rel="noopener">GC 垃圾收集器</a></li>
+<li><a href="http://www.pianshen.com/article/1281166860/;jsessionid=E0DEA106D16CF43E807CF64BD65B0622" target="_blank" rel="noopener">JVM的垃圾回收算法以及GC收集器</a></li>
+<li><a href="http://www.pianshen.com/article/6291304253/;jsessionid=E0DEA106D16CF43E807CF64BD65B0622" target="_blank" rel="noopener">不同垃圾收集器种类的GC日志</a></li>
+<li><a href="http://www.pianshen.com/article/9996249804/;jsessionid=E0DEA106D16CF43E807CF64BD65B0622" target="_blank" rel="noopener">GC算法与垃圾收集器</a></li>
+<li><a href="http://www.pianshen.com/article/1801694536/;jsessionid=E0DEA106D16CF43E807CF64BD65B0622" target="_blank" rel="noopener">GC参数和垃圾收集器</a></li>
+<li><a href="http://www.pianshen.com/article/8582727714/;jsessionid=E0DEA106D16CF43E807CF64BD65B0622" target="_blank" rel="noopener">JVM几种常见的垃圾收集器总结</a></li>
+<li><a href="http://www.pianshen.com/article/896423848/;jsessionid=E0DEA106D16CF43E807CF64BD65B0622" target="_blank" rel="noopener">jvm系列(三):GC算法 垃圾收集器</a></li>
+<li><a href="http://www.pianshen.com/article/9841157232/;jsessionid=E0DEA106D16CF43E807CF64BD65B0622" target="_blank" rel="noopener">JVM-GC算法 垃圾收集器</a></li>
+</ul>
+
+	</div>
+	<div class="post-nav">
+		<div class="post-nav-prev">
+			
+				<a href="/2020/02/02/SpringBoot%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%85%A8/" rel="prev" title="SpringBoot使用大全">
+					<i class="fa fa-angle-double-left"></i>&nbspSpringBoot使用大全
+				</a>
+				
+		</div>
+		<div class="post-nav-next">
+					
+						<a href="/2020/01/15/JVM&amp;GC%EF%BC%88%E5%9B%9B%EF%BC%89JVM%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E6%9C%BA%E5%88%B6%E5%92%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95/" rel="next" title="JVM&amp;GC（四）JVM内存分配机制和垃圾回收算法">
+							JVM&amp;GC（四）JVM内存分配机制和垃圾回收算法&nbsp<i class="fa fa-angle-double-right"></i>
+						</a>
+				  	
+			</div>
+			<div class="clear"></div>
+	</div>		
+</article>
+
+<div class="post-toc">
+	<div class="toc-top">
+		文章目录
+	</div>
+	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#GC垃圾回收器"><span class="toc-text">GC垃圾回收器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾回收器分类"><span class="toc-text">垃圾回收器分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见的垃圾回收器"><span class="toc-text">常见的垃圾回收器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Serial收集器"><span class="toc-text">Serial收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ParNew收集器"><span class="toc-text">ParNew收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel收集器"><span class="toc-text">Parallel收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-Old-收集器"><span class="toc-text">Parallel Old 收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parallel-Scavenge收集器-与Parallel-Old收集器区别："><span class="toc-text">Parallel Scavenge收集器**与Parallel Old收集器区别：**</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMS收集器"><span class="toc-text">CMS收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#G1收集器"><span class="toc-text">G1收集器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#收集步骤："><span class="toc-text">收集步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相关文章"><span class="toc-text">相关文章</span></a></li></ol></li></ol></li></ol>
+</div>
+
+
+
+
+
+
+
+
+</section>	
+
+		</main>
+		<footer class="footer">
+	<div class="footer-info">
+		<p>
+			Copyright © 湛志良 2020
+		</p>
+		<p class="a">
+			Theme by <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>
+		</p> 
+	</div>
+</footer>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="/js/navbar.js"></script>
+
+
+<script src="/js/pace.min.js"></script>
+
+
+<script src="/js/code.js"></script>
+
+
+<script src="/js/load.js"></script>
+
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/post-except.js"></script>
+
+
+	
+<script src="/js/jquery.fancybox.js"></script>
+
+	
+<script src="/js/jquery.fancyboxStart.js"></script>
+
+	
+		
+<script src="/js/toc.js"></script>
+
+		
+<script src="/js/jquery.toTop.js"></script>
+
+	
+
+
+	<script src="https://unpkg.com/vanilla-back-to-top@7.2.0/dist/vanilla-back-to-top.min.js"></script>
+	
+<script src="/js/IndexToTop.js"></script>
+
+
+
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ec791a1cc0d7ff3"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</body>	
+</html>	

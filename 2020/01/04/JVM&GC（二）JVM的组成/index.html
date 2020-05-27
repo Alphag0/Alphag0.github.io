@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scaleable=0" name="viewport">
+	<title>Zaccheus | blog</title>
+	
+<link rel="stylesheet" href="/css/style.css">
+
+	
+<link rel="stylesheet" href="/css/third%20party/jquery.fancybox.css">
+
+	<link rel="icon" href="/images/avatar.jpg">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+	<body>
+		<header class="header">
+	<div class="header_top">
+		<span class="theme">
+			<a href="/">
+				Zaccheus | blog
+			</a>	
+		</span>
+		<nav class="navbar">
+			<ul class="menu">
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/" class="menu-item-link">
+							首页
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/categories" class="menu-item-link">
+							分类
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/archives" class="menu-item-link">
+							归档
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/tags" class="menu-item-link">
+							标签
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/about" class="menu-item-link">
+							关于我
+						</a>
+					</li>
+					
+			</ul>
+		</nav>
+	</div>
+	<i id="homelink" data-link="http://alphag0.github.io/"></i>
+	<div class="header_bottom">
+		<div class="blog-title">
+			<div class="descrs">
+				<div class="descr">湛湛的个人博客</div>
+				<br>
+				<div class="descr">" 聪明在于学习 , 天才在于积累 "</div>
+			</div>
+			<div class="blog-down">
+				<a href="javascript:void(0);">
+					<i class="fa fa-angle-double-down fa-2x"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+		<main class="main">
+			<section class="posts">
+	<article class="post_full"> 
+	<h1 class="post-title">
+		<div class="post-title-link">
+			JVM&GC（二）JVM的组成
+		</div>
+	</h1>
+	
+	<div class="post-info">
+		<div class="post-date">
+				<i class="fa fa-calendar"></i>&nbsp2020-01-04&nbsp&nbsp&nbsp
+		</div>
+		
+				<span class="post-words">
+					<i class="fa fa-pencil-square-o"></i>&nbsp3.2k&nbsp字&nbsp&nbsp
+				</span>
+				<span class="post-time">
+					<i class="fa fa-clock-o"></i>&nbsp11 分钟&nbsp&nbsp&nbsp
+				</span>
+		
+		<div class="post-tags">
+			
+    
+        <i class="fa fa-tags"></i>  <a href="/tags/JVM-GC/"> JVM&GC</a>
+    
+		</div>
+	</div>
+	<div class="post-content">
+		<h2 id="JVM组成"><a href="#JVM组成" class="headerlink" title="JVM组成"></a>JVM组成</h2><h4 id="1、JVM的主要组成部分"><a href="#1、JVM的主要组成部分" class="headerlink" title="1、JVM的主要组成部分"></a>1、JVM的主要组成部分</h4><ol>
+<li>类加载器(ClassLoader)</li>
+<li>运行时数据区(Runtime Data Area)</li>
+<li>执行引擎(Execution Engine)</li>
+<li>本地库接口(Native Interface)</li>
+</ol>
+<blockquote>
+<p>程序在执行之前先要把java代码转换成字节码(class文件)，jvm首先需要把字节码通过<code>类加载器</code>(ClassLoader) 把文件加载到内存中<code>运行时数据区</code>(Runtime Data Area)，而字节码文件是jvm的一套指令集规范，并不能直接交个底层操作系统去执行，因此需要特定的命令解析器<code>执行引擎</code>(Execution Engine) 将字节码翻译成底层系统指令再交由CPU去执行，而这个过程中需要调用其他语言的接口<code>本地库接口</code>(Native Interface)来实现整个程序的功能，这就是这4个主要组成部分的职责与功能。<br>而我们通常所说的jvm组成指的是运行时数据区(Runtime Data Area) ，因为通常需要程序员调试分析的区域就是”运行时数据区”，或者更具体的来说就是”运行时数据区”里面的Heap（堆）模块，那接下来我们来看运行时数据区(Runtime Data Area)是由哪些模块组成的。</p>
+</blockquote>
+<h4 id="2、JVM的运行时数据区"><a href="#2、JVM的运行时数据区" class="headerlink" title="2、JVM的运行时数据区"></a>2、JVM的运行时数据区</h4><p><img src="https://blog-1258750961.cos.ap-beijing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/1581043520742.png" alt="1581043520742"></p>
+<blockquote>
+<p>不同虚拟机实现可能略微有所不同，但都会遵从Java虚拟机规范，Java 8虚拟机规范规定，Java虚拟机所管理的内存将会包括以下几个运行时数据区域：</p>
+</blockquote>
+<ol>
+<li>程序计数器(Program Counter Register)</li>
+<li>Java虚拟机栈(Java Virtual Machine Stacks)</li>
+<li>本地方法栈(Native Method Stack)</li>
+<li>Java堆(Java Heap)</li>
+<li>方法区（Methed Area)</li>
+</ol>
+<h5 id="2-2-1程序计数器"><a href="#2-2-1程序计数器" class="headerlink" title="2.2.1程序计数器"></a>2.2.1程序计数器</h5><p>程序计数器(Program Counter Register)是一块较小的内存空间，它是运行速度最快的存储区域，因为它位于处理器内部，它可以看作是当前线程所执行的字节码的行号指示器。在虚拟机的概念模型里，字节码解析器的工作是<code>通过改变这个计数器的值来选取下一条需要执行的字节码指令</code>(<strong>线程私有</strong>)，<code>分支、循环、跳转、异常处理、线程恢复</code>等基础功能都需要依赖这个计数器来完成。</p>
+<ul>
+<li><strong>特性：内存私有</strong></li>
+</ul>
+<p>由于jvm的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，也就是任何时刻，一个处理器(或者说一个内核)都只会执行一条线程中的指令。因此为了线程切换后能恢复到正确的执行位置，<code>每个线程都有独立的程序计数器</code>。</p>
+<ul>
+<li><strong>异常规定：无</strong></li>
+</ul>
+<p>如果线程正在执行Java中的方法，程序计数器记录的就是正在执行虚拟机字节码指令的地址，如果是Native方法，这个计数器就为空(undefined) ，因此该内存区域是唯一一个在Java虚拟机规范中没有规定OutOfMemoryError的区域。</p>
+<h5 id="2-2-2Java虚拟机栈"><a href="#2-2-2Java虚拟机栈" class="headerlink" title="2.2.2Java虚拟机栈"></a>2.2.2Java虚拟机栈</h5><p>Java虚拟机栈(Java Virtual Machine Stacks)描述的是Java方法执行的内存模型，每个方法在执行的同时都会创建一个栈帧(Stack Frame)用于存储<code>局部变量表、操作数栈、动态链接、方法出口</code>等信息，每个方法从调用直至执行完成的过程，都对应着一个线帧在虚拟机栈中入栈到出栈的过程。<code>平时说的栈一般指局部变量表部分</code></p>
+<p>栈中存储的数据大小和生命周期必须是确定的，所以Java中只有某些数据，如对象引用是被；放在栈中的，而应用程序内部庞大的生命周期不确定的对象却放在的堆中</p>
+<ul>
+<li><strong>特性：线程私有，它的生命周期和线程相同。</strong></li>
+</ul>
+<p>栈中的数据在本栈内是共享的，注意，因为栈是线程私有的，所以数据共享并不是和其他线程共享，而是栈内共享</p>
+<ul>
+<li><strong>异常规定: StackOverflowError， OutOfMemoryError</strong></li>
+</ul>
+<ol>
+<li>如果线程请求的栈深度大于虚拟机所允许的栈深度就会抛出StackOverflowError异常。</li>
+<li>如果虚拟机是可以动态扩展的，如果扩展时无法申请到足够的内存就会抛出OutOfMemoryError异常。</li>
+</ol>
+<blockquote>
+<p>如图所示:虚拟机栈在运行时使用一种叫栈帧的数据机构来保存上下文数据，栈帧中存放了方法的<code>局部变量表</code>，<code>操作数栈</code>，<code>动态链接</code>和<code>返回地址信息</code>(方法出口)</p>
+</blockquote>
+<p><img src="https://blog-1258750961.cos.ap-beijing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/1580826839848.png" alt="1580826839848"></p>
+<h5 id="2-2-3本地方法栈"><a href="#2-2-3本地方法栈" class="headerlink" title="2.2.3本地方法栈"></a>2.2.3本地方法栈</h5><p>本地方法栈(Native Method Stack)与虚拟机栈的作用是一样的，只不过虚拟机栈是服务Java方法的，而本地方法栈是<code>为虚拟机调
+用Native方法服务</code>的。</p>
+<ul>
+<li><strong>异常和特性</strong>：同虚拟机栈</li>
+</ul>
+<p>本地方法并不是Java语言实现的，而是由c语言实现的，当某个线程调用一个本地方法的时候，它就进入了一个全新的不瘦虚拟机限制的区域，本地方法可以通过本地方法接口来访问虚拟机内部的运行时数据区，它还可以直接操作处理器的寄存器，或者直接从本地内存中直接分配任意数量的内存，从层级来说，它和虚拟机有同样的权限</p>
+<p>本地方法本质上是依赖于实现的，虚拟机实现的设计者可以自由决定使用什么样的机制来让Java程序执行本地方法，任何本地方法都会使用某种本地方法栈，当调用本地方法的时候，虚拟机会保持当前栈不变，本地方法不会在线程栈内压入新的数据，虚拟机只是简单的动态链接并直接调用指定的本地方法</p>
+<p>在Java虚拟机规范中对于本地方法栈没有特殊的要求，虚拟机可以自由的实现它，因此在Sun HotSpot虚拟机直接把本地方法栈和虚拟机栈合二为一了。</p>
+<h5 id="2-2-4Java堆"><a href="#2-2-4Java堆" class="headerlink" title="2.2.4Java堆"></a>2.2.4Java堆</h5><p>Java堆(Java Heap)是Java虚拟机中内存最大的一块，是被<code>所有线程共享</code>的，在虚拟机启动时候创建， Java堆唯一的目的就是<code>存
+放对象实例</code>，几乎所有的对象实例都在这里分配内存，随着JIT编译器的发展和逃逸分析技术的逐渐成熟，栈上分配、标量替换优<br>化的技术将会导致一些微妙的变化，所有的对象都分配在堆上渐渐变得不那么“绝对”了。</p>
+<ul>
+<li><strong>特性：内存共享</strong></li>
+<li><strong>异常规定：OutOfMemoryError</strong></li>
+</ul>
+<p>如果在堆中没有内存完成实例分配，并且堆不可以再扩展时，将会抛出OutofMemoryError， Java虚拟机规范规定， Java堆<code>可以处在物理上不连续的内存空间中</code>，只要逻辑上连续即可，就像我们的磁盘空间一样。在实现上也可以是固定大小的，也可以是可扩展的，不过当前主流的虚拟机都是可扩展的，通过-Xmx和-Xms控制。</p>
+<p>堆在Java虚拟机规范中是一种通用性的内存池，用于存放所有的Java对象，堆是一个运行时的数据区，类的对象从中分配空间，这些对象通过new关键字建立，他们不需要程序代码来显式的释放，堆是有垃圾回收来负责的，堆的优势在于可以动态的分配大小，生命周期也不需要事先告诉编译，但是缺点就是因为是<code>运行时分配</code>，所以数据<code>访问速度较慢</code>，在大多数虚拟机中，Java中的对象和数组都是在堆中。</p>
+<ul>
+<li><strong>逃逸分析</strong></li>
+</ul>
+<blockquote>
+<p>如果一个对象的指针被多个线程或者方法引用的时候，那我们就可以称这个指针发生了逃逸，常见的逃逸主要是<code>全局变量赋值</code>，<code>返回值逃逸</code>，<code>实例引用逃逸</code>(线程逃逸最终也是通过这三种情况来产生的)<br>我们在写代码过程中应当尽量减少逃逸的情况，比如当方法返回值是stringbuffer的时候，我们拿到它的目的紧紧是为了获取里面多字符串，那么就干脆让方法直接返回字符串，这样buffer对象就会随着方法执行完成而回收，就不会发生逃逸问题了</p>
+</blockquote>
+<h5 id="2-2-5方法区"><a href="#2-2-5方法区" class="headerlink" title="2.2.5方法区"></a>2.2.5方法区</h5><p>方法区(Methed Area)用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译后的代码等数据。</p>
+<blockquote>
+<p>很多人愿意把方法区称作而HotSpot虚拟机垃圾回收器团队把GC分代收集扩展到了方法区，或者说是用来永久代来实现方法区而已，这样能省去专门为方法区编写内存管理的代码，但是在Jdk8也移除了“永久代”，使用Native Memory来实现方法区。并重新命名为Metaspace元空间， 也就是方法区相当于我们的Java中的接口，永久代是实现类。</p>
+</blockquote>
+<ul>
+<li><strong>特性：内存共享</strong></li>
+<li><strong>异常规定：OutOfMemoryError</strong></li>
+</ul>
+<p>当方法无法满足内存分配需求时会抛出OutOfMemoryError异常。</p>
+<h3 id="3-类加载机制"><a href="#3-类加载机制" class="headerlink" title="3.类加载机制"></a>3.类加载机制</h3><h4 id="3-1类加载过程"><a href="#3-1类加载过程" class="headerlink" title="3.1类加载过程"></a>3.1类加载过程</h4><p>当程序要使用某个类时，如果该类还未被加载到内存中，则系统会通过<code>加载</code>，<code>连接</code>，<code>初始化</code>三步来实现这个类进行初始化。</p>
+<h4 id="3-2类加载器"><a href="#3-2类加载器" class="headerlink" title="3.2类加载器"></a>3.2类加载器</h4><ul>
+<li>(1) Bootstrap classLoader<br>负责加载$JAVA-HOME中的jre/lib/rt.jar里所有的class，由c++实现，不是ClassLoader子类。</li>
+<li>(2) Extension ClassLoader<br>负责加载Java平台中扩展功能的一些jar包，包括$JAVA-HOME中的jre/ib/ext/*.jar或-D java.ext.dirs指定目录下的jar包。</li>
+<li>(3) App ClassLoader<br>负责加载classpath中指定的jar包及目录中class</li>
+<li>(4) Custom ClassLoader<br>应用程序根据自身需要自定义的ClassLoader，如tomcat， jboss都会根据2ee规范自行实现ClassLoader，加载过程中会先检查是否已被加载，检查顺序是自底向上，从Custom ClassLoader到Bootstrap ClassLoader逐层检查，只要某个classloader已加载就视为已加载此类，保证此类在所有ClassLoader只加载一次。而加载的顺序是自顶向下，也就是由上层来逐层尝试加载此类。</li>
+</ul>
+<h4 id="3-3JVM三种预定义加载器"><a href="#3-3JVM三种预定义加载器" class="headerlink" title="3.3JVM三种预定义加载器"></a>3.3JVM三种预定义加载器</h4><blockquote>
+<p>JVM预定义有三种加载器，当一个JVM启动的时候，java默认开始使用如下三种类加载器：</p>
+</blockquote>
+<ol>
+<li><code>引导类加载器(Bootstrap class loader)</code> :它用来加载Java的核心库，是用原生代码来实现的，并不继承自java.lang.ClassLoader，它负责将Java-Runtime-Home/lib下面的核心类库或-xbootclasspath选项指定的jar包加载到内存中。由于引导类加载器涉及到虚拟机本地实现细节，开发者无法直接获取到启动类加载器的引用，所以不允许直接通过引用进行操作。</li>
+<li><code>扩展类加载器(Extensions class loader)</code> :该类加载器在此目录里面查找并加载Java类。扩展类加载器是由Sun的ExtClassLoader (sun.misc.Launcher$ExtClassLoader)实现的。它用来加载Java的扩展库。Java虚拟机的实现会提供一个扩展库目录。它负责将Java-Runtime_Home/lib/ext或者由系统变量-Djava.ext.dirs指定位置中的类库加载到内存中。开发者可以直接使用标准扩展类加载器。</li>
+<li><code>系统类加载器(System class loader)</code>:系统类加载器是由Sun的AppClassLoader (sun.misc.Launcher$AppClassLoader)实现的。它负责将系统类路径java-classpath或-Djava.class.path变量所指的目录下的类库加载到内存中。开发者可以直接使用系统类加载器。一般来说， Java应用的类都是由它来完成加载的。可以通过ClassLoader.getSystemClassLoader()来获取它。</li>
+</ol>
+<h4 id="3-4双亲委派"><a href="#3-4双亲委派" class="headerlink" title="3.4双亲委派"></a>3.4双亲委派</h4><p>双亲委派模型的式作过程是:如果一个类加载器收到了类加载的请求，<code>它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成</code>，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到顶层的启动类加载器中，只有当父加载器反馈自己无法完全这个加载请求(它的搜索范围中没有找到所需的类)时，子加载器才会尝试自己去加载。</p>
+
+	</div>
+	<div class="post-nav">
+		<div class="post-nav-prev">
+			
+				<a href="/2020/01/15/Freemarker%E8%AF%AD%E6%B3%95/" rel="prev" title="Freemarker语法">
+					<i class="fa fa-angle-double-left"></i>&nbspFreemarker语法
+				</a>
+				
+		</div>
+		<div class="post-nav-next">
+					
+						<a href="/2020/01/04/JVM&amp;GC%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" rel="next" title="JVM&amp;GC（一）基础概念">
+							JVM&amp;GC（一）基础概念&nbsp<i class="fa fa-angle-double-right"></i>
+						</a>
+				  	
+			</div>
+			<div class="clear"></div>
+	</div>		
+</article>
+
+<div class="post-toc">
+	<div class="toc-top">
+		文章目录
+	</div>
+	<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM组成"><span class="toc-text">JVM组成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、JVM的主要组成部分"><span class="toc-text">1、JVM的主要组成部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、JVM的运行时数据区"><span class="toc-text">2、JVM的运行时数据区</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-1程序计数器"><span class="toc-text">2.2.1程序计数器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-2Java虚拟机栈"><span class="toc-text">2.2.2Java虚拟机栈</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-3本地方法栈"><span class="toc-text">2.2.3本地方法栈</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-4Java堆"><span class="toc-text">2.2.4Java堆</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-5方法区"><span class="toc-text">2.2.5方法区</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-类加载机制"><span class="toc-text">3.类加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1类加载过程"><span class="toc-text">3.1类加载过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2类加载器"><span class="toc-text">3.2类加载器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3JVM三种预定义加载器"><span class="toc-text">3.3JVM三种预定义加载器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4双亲委派"><span class="toc-text">3.4双亲委派</span></a></li></ol></li></ol></li></ol>
+</div>
+
+
+
+
+
+
+
+
+</section>	
+
+		</main>
+		<footer class="footer">
+	<div class="footer-info">
+		<p>
+			Copyright © 湛志良 2020
+		</p>
+		<p class="a">
+			Theme by <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>
+		</p> 
+	</div>
+</footer>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="/js/navbar.js"></script>
+
+
+<script src="/js/pace.min.js"></script>
+
+
+<script src="/js/code.js"></script>
+
+
+<script src="/js/load.js"></script>
+
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/post-except.js"></script>
+
+
+	
+<script src="/js/jquery.fancybox.js"></script>
+
+	
+<script src="/js/jquery.fancyboxStart.js"></script>
+
+	
+		
+<script src="/js/toc.js"></script>
+
+		
+<script src="/js/jquery.toTop.js"></script>
+
+	
+
+
+	<script src="https://unpkg.com/vanilla-back-to-top@7.2.0/dist/vanilla-back-to-top.min.js"></script>
+	
+<script src="/js/IndexToTop.js"></script>
+
+
+
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ec791a1cc0d7ff3"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</body>	
+</html>	

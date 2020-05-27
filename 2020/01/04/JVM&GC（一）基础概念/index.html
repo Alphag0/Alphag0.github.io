@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scaleable=0" name="viewport">
+	<title>Zaccheus | blog</title>
+	
+<link rel="stylesheet" href="/css/style.css">
+
+	
+<link rel="stylesheet" href="/css/third%20party/jquery.fancybox.css">
+
+	<link rel="icon" href="/images/avatar.jpg">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+	<body>
+		<header class="header">
+	<div class="header_top">
+		<span class="theme">
+			<a href="/">
+				Zaccheus | blog
+			</a>	
+		</span>
+		<nav class="navbar">
+			<ul class="menu">
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/" class="menu-item-link">
+							首页
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/categories" class="menu-item-link">
+							分类
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/archives" class="menu-item-link">
+							归档
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/tags" class="menu-item-link">
+							标签
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/about" class="menu-item-link">
+							关于我
+						</a>
+					</li>
+					
+			</ul>
+		</nav>
+	</div>
+	<i id="homelink" data-link="http://alphag0.github.io/"></i>
+	<div class="header_bottom">
+		<div class="blog-title">
+			<div class="descrs">
+				<div class="descr">湛湛的个人博客</div>
+				<br>
+				<div class="descr">" 聪明在于学习 , 天才在于积累 "</div>
+			</div>
+			<div class="blog-down">
+				<a href="javascript:void(0);">
+					<i class="fa fa-angle-double-down fa-2x"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+		<main class="main">
+			<section class="posts">
+	<article class="post_full"> 
+	<h1 class="post-title">
+		<div class="post-title-link">
+			JVM&GC（一）基础概念
+		</div>
+	</h1>
+	
+	<div class="post-info">
+		<div class="post-date">
+				<i class="fa fa-calendar"></i>&nbsp2020-01-04&nbsp&nbsp&nbsp
+		</div>
+		
+				<span class="post-words">
+					<i class="fa fa-pencil-square-o"></i>&nbsp1.3k&nbsp字&nbsp&nbsp
+				</span>
+				<span class="post-time">
+					<i class="fa fa-clock-o"></i>&nbsp4 分钟&nbsp&nbsp&nbsp
+				</span>
+		
+		<div class="post-tags">
+			
+    
+        <i class="fa fa-tags"></i>  <a href="/tags/JVM-GC/"> JVM&GC</a>
+    
+		</div>
+	</div>
+	<div class="post-content">
+		<h2 id="JVM基础"><a href="#JVM基础" class="headerlink" title="JVM基础"></a>JVM基础</h2><h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><blockquote>
+<p>JVM是可运行Java代码的假想计算机，包括一套字节码指令集、一组寄存器、一个栈、一个垃圾回收，堆和一个存储方法域。JVM是运行在操作系统之上的，它与硬件没有直接的交互。</p>
+</blockquote>
+<h4 id="并发并行"><a href="#并发并行" class="headerlink" title="并发并行"></a>并发并行</h4><ul>
+<li><p>并发</p>
+<blockquote>
+<p>并发是任务交替执行的，但是多个任务之间是串行的，一般指一个CPU核心的多个线程<code>轮流</code>执行。</p>
+</blockquote>
+</li>
+<li><p>并行</p>
+<blockquote>
+<p>并行是多个线程在同时运行，其发生在多核心的CPU下，每个CPU核心执行一个线程，多个线程<code>同时</code>执行。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h4><ul>
+<li><p>进程</p>
+<blockquote>
+<p><code>每个独立运行的程序</code>都是一个<code>进程</code>，程序与程序之间相互隔离，进程与进程之间也隔离。</p>
+</blockquote>
+</li>
+<li><p>线程</p>
+<blockquote>
+<p>每个进程内部至少会有一个线程或多个线程，<code>线程</code>是<code>执行指令的最小单位</code>，每个程序的功能就是由他进程内的所有线程共同完成的。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="内存泄漏和内存溢出"><a href="#内存泄漏和内存溢出" class="headerlink" title="内存泄漏和内存溢出"></a>内存泄漏和内存溢出</h4><ul>
+<li><p>内存泄漏</p>
+<blockquote>
+<p>内存泄漏指的是我们程序内部的对象在<code>使用了空间之后本应该将资源释放掉</code>，<code>但是没有释放</code>，导致这片内存空间一直无法被再次分配出去，叫做泄漏</p>
+</blockquote>
+</li>
+<li><p>内存溢出</p>
+<blockquote>
+<p>内存溢出指的是当我们的程序申请内存时，因为剩余的内存不足，<code>在进行垃圾回收等操作之后</code>仍旧无法满足分配要求，就会出现内存溢出，内存泄漏在不断增加的情况下最终会导致内存溢出，内存溢出就是<code>我要的资源你满足不了</code>。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="对象引用级别（四种引用级别）"><a href="#对象引用级别（四种引用级别）" class="headerlink" title="对象引用级别（四种引用级别）"></a>对象引用级别（四种引用级别）</h4><ul>
+<li><p>强引用</p>
+<blockquote>
+<p>在Java中最常见的就是强引用，<code>把一个对象赋给一个引用变量</code>，这个引用变量就是一个强引用。当一个对象被强引用变量引用时，它处于<code>可达状态</code>，它是<code>不可能被垃圾回收机制回收的</code>，即使该对象以后永远都不会被用到，JVM也不会回收。因此强引用是造成Java内存泄漏的主要原因之一。<br>强引用属于包内可见，在一个线程中无需引用可以直接对象，除非引用不存在了，否则对象不会呗GC回收。</p>
+</blockquote>
+</li>
+<li><p>软引用</p>
+<blockquote>
+<p>软引用需要用SoftReference类来实现，对于只有软引用的对象来说，<code>当系统内存足够时它不会被回收，当系统内存空间不足时它会被回收</code>。软引用通常用在对内存敏感的程序中。<br>属于public，当我们的JVM内存不足的时候，GC会通过一系列的算法来决定是否回收软引用对象，并可选的把软引用对象存放在一个引用队列，虚拟机会尽可能让软引用对象存活的时间更长点。</p>
+</blockquote>
+</li>
+<li><p>弱引用</p>
+<blockquote>
+<p>弱引用需要用WeakReference类来实现，它比软引用的生存期更短，对于只有弱引用的对象来说，只要垃圾回收机制一运行，<code>不管JVM的内存空间是否足够，总会回收该对象占用的内存</code>。<br>属于public，GC回收的时候一定会回收弱引用对象，但是关系复杂的弱引用（一开始认为不是弱引用）一般要经过几次GC才会被回收完，<code>弱引用对象常常用于Map中，当Map这个强引用对象被释放后，内部的对象就是弱引用，可以被GC快速回收</code>。</p>
+</blockquote>
+</li>
+<li><p>虚引用</p>
+<blockquote>
+<p>虚引用需要PhantomReference类来实现，它不能单独使用，必须和引用队列联合使用。虚引用的主要作用是<code>跟踪对象被垃圾回收的状态</code>。<br>属于public，本身不是为了这个对象而存在，用于判断GC什么时候执行。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="对象中止机制（finalization）"><a href="#对象中止机制（finalization）" class="headerlink" title="对象中止机制（finalization）"></a>对象中止机制（finalization）</h4><blockquote>
+<p>Java提供了对象终止机制(finalization)来允许开发人员在对象销毁之前来执行自定义的处理逻辑，这个机制就是<code>通过object的finalize来触发</code>的，在这个方法内我们可以做任何我们可以做的事情，比如<code>关闭连接</code>，<code>释放资源</code>等，也可以在里面<code>让对象重新建立引用</code><br>Java中的对象有三种状态:</p>
+<blockquote>
+<p>第一种是<code>可达状态</code>，也就是处于<code>引用不可回收状态</code><br>第二种是<code>可复活状态</code>，此状态发生在当JVM发现对象出于不可达的时候，如果对象没有触发过终止机制，就会触发对象终止机制，当发现我们的对象重写了finalize并且在里面对对象重新建立引用后会触发对象的复活状态<br>第三种是不可达状态也就是可以回收的状态，这个状态的对象可以是<code>没有重写finalize方法的对象</code>或者是<code>已经执行过一次并复活之后再次不可达的对象</code>finalize只会执行一次，当第二次不可达的时候不会再执行这个方法</p>
+</blockquote>
+</blockquote>
+
+	</div>
+	<div class="post-nav">
+		<div class="post-nav-prev">
+			
+				<a href="/2020/01/04/JVM&amp;GC%EF%BC%88%E4%BA%8C%EF%BC%89JVM%E7%9A%84%E7%BB%84%E6%88%90/" rel="prev" title="JVM&amp;GC（二）JVM的组成">
+					<i class="fa fa-angle-double-left"></i>&nbspJVM&amp;GC（二）JVM的组成
+				</a>
+				
+		</div>
+		<div class="post-nav-next">
+					
+						<a href="/2019/01/23/%E6%B2%81%E5%9B%AD%E6%98%A5%C2%B7%E9%9B%AA/" rel="next" title="沁园春·雪">
+							沁园春·雪&nbsp<i class="fa fa-angle-double-right"></i>
+						</a>
+				  	
+			</div>
+			<div class="clear"></div>
+	</div>		
+</article>
+
+<div class="post-toc">
+	<div class="toc-top">
+		文章目录
+	</div>
+	<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM基础"><span class="toc-text">JVM基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础概念"><span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#并发并行"><span class="toc-text">并发并行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#进程和线程"><span class="toc-text">进程和线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内存泄漏和内存溢出"><span class="toc-text">内存泄漏和内存溢出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象引用级别（四种引用级别）"><span class="toc-text">对象引用级别（四种引用级别）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象中止机制（finalization）"><span class="toc-text">对象中止机制（finalization）</span></a></li></ol></li></ol></li></ol>
+</div>
+
+
+
+
+
+
+
+
+</section>	
+
+		</main>
+		<footer class="footer">
+	<div class="footer-info">
+		<p>
+			Copyright © 湛志良 2020
+		</p>
+		<p class="a">
+			Theme by <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>
+		</p> 
+	</div>
+</footer>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="/js/navbar.js"></script>
+
+
+<script src="/js/pace.min.js"></script>
+
+
+<script src="/js/code.js"></script>
+
+
+<script src="/js/load.js"></script>
+
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/post-except.js"></script>
+
+
+	
+<script src="/js/jquery.fancybox.js"></script>
+
+	
+<script src="/js/jquery.fancyboxStart.js"></script>
+
+	
+		
+<script src="/js/toc.js"></script>
+
+		
+<script src="/js/jquery.toTop.js"></script>
+
+	
+
+
+	<script src="https://unpkg.com/vanilla-back-to-top@7.2.0/dist/vanilla-back-to-top.min.js"></script>
+	
+<script src="/js/IndexToTop.js"></script>
+
+
+
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ec791a1cc0d7ff3"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</body>	
+</html>	

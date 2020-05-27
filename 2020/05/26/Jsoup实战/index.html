@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scaleable=0" name="viewport">
+	<title>Zaccheus | blog</title>
+	
+<link rel="stylesheet" href="/css/style.css">
+
+	
+<link rel="stylesheet" href="/css/third%20party/jquery.fancybox.css">
+
+	<link rel="icon" href="/images/avatar.jpg">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+	<body>
+		<header class="header">
+	<div class="header_top">
+		<span class="theme">
+			<a href="/">
+				Zaccheus | blog
+			</a>	
+		</span>
+		<nav class="navbar">
+			<ul class="menu">
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/" class="menu-item-link">
+							首页
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/categories" class="menu-item-link">
+							分类
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/archives" class="menu-item-link">
+							归档
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/tags" class="menu-item-link">
+							标签
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/about" class="menu-item-link">
+							关于我
+						</a>
+					</li>
+					
+			</ul>
+		</nav>
+	</div>
+	<i id="homelink" data-link="http://alphag0.github.io/"></i>
+	<div class="header_bottom">
+		<div class="blog-title">
+			<div class="descrs">
+				<div class="descr">湛湛的个人博客</div>
+				<br>
+				<div class="descr">" 聪明在于学习 , 天才在于积累 "</div>
+			</div>
+			<div class="blog-down">
+				<a href="javascript:void(0);">
+					<i class="fa fa-angle-double-down fa-2x"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+		<main class="main">
+			<section class="posts">
+	<article class="post_full"> 
+	<h1 class="post-title">
+		<div class="post-title-link">
+			Jsoup实战（爬取京东商品信息）
+		</div>
+	</h1>
+	
+	<div class="post-info">
+		<div class="post-date">
+				<i class="fa fa-calendar"></i>&nbsp2020-05-26&nbsp&nbsp&nbsp
+		</div>
+		
+				<span class="post-words">
+					<i class="fa fa-pencil-square-o"></i>&nbsp1.2k&nbsp字&nbsp&nbsp
+				</span>
+				<span class="post-time">
+					<i class="fa fa-clock-o"></i>&nbsp5 分钟&nbsp&nbsp&nbsp
+				</span>
+		
+		<div class="post-tags">
+			
+    
+        <i class="fa fa-tags"></i>  <a href="/tags/爬虫/"> 爬虫</a>
+    
+		</div>
+	</div>
+	<div class="post-content">
+		<h3 id="导入Jsoup依赖"><a href="#导入Jsoup依赖" class="headerlink" title="导入Jsoup依赖"></a><strong>导入Jsoup依赖</strong></h3><pre class="line-numbers language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- 解析网页 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.jsoup<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>jsoup<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.12.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a><strong>开始</strong></h3><p>首先我们通过京东的商品搜索地址，拿到document对象</p>
+<pre class="line-numbers language-java"><code class="language-java">String url <span class="token operator">=</span> <span class="token string">"https://search.jd.com/Search?keyword=java"</span><span class="token punctuation">;</span>
+Document document <span class="token operator">=</span> Jsoup<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">30000</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 抛出异常</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Alphag0/pic@master/jsoup/20200526161140.png" alt=""></p>
+<p>在浏览器中检查元素可以看到我们要找的商品列表是一个id=”J_goodsList”的div，那么我们可以通过id获取j_goodsList元素，再通过li标签获取j_goodsList下面的每一个li元素：</p>
+<pre class="line-numbers language-java"><code class="language-java">Element j_goodsList <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"J_goodsList"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Elements elements <span class="token operator">=</span> j_goodsList<span class="token punctuation">.</span><span class="token function">getElementsByTag</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/Alphag0/pic@master/jsoup/20200526162017.png" alt=""></p>
+<p>拿到每个商品元素后，我们再次展开可以看到又是一个个的div，这里我们可以通过class来获取，而我是直接通过img标签获取的</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">for</span> <span class="token punctuation">(</span>Element element <span class="token operator">:</span> elements<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    String img <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getElementsByTag</span><span class="token punctuation">(</span><span class="token string">"img"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">"src"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    String price <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getElementsByClass</span><span class="token punctuation">(</span><span class="token string">"p-price"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    String title <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getElementsByClass</span><span class="token punctuation">(</span><span class="token string">"p-name"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>运行结果如下：</p>
+<pre class="line-numbers language-shell"><code class="language-shell">//img10.360buyimg.com/n7/jfs/t1/26339/8/10661/124305/5c8af829E4470835f/99742c91174d3d7a.jpg
+Java从入门到精通（第5版） Java从入门到精通（第5版）
+￥66.30 ￥64.30
+================
+//img11.360buyimg.com/n7/jfs/t1/57972/5/2455/276693/5d036b6cEbb183907/b8c1845431ba6753.jpg
+零基础学Java（全彩版） 零基础学Java（全彩版）
+￥55.80
+================
+//img10.360buyimg.com/n7/jfs/t1/41570/5/1180/179278/5cc54479E7522cee3/d5b50e571ccc926e.jpg
+疯狂Java讲义（第5版）（含DVD光盘一张）
+￥127.90
+================
+//img13.360buyimg.com/n7/jfs/t1/102900/26/2632/158701/5dd601a5E9ed34588/596e136d4a144cae.jpg
+Java核心技术 卷I 基础知识（原书第11版） CoreJava第11版，Jolt大奖获奖作品，与Java编程思想、EffectiveJava、深入理解Java虚拟机堪称：Java四大名著
+￥141.60
+================
+//img12.360buyimg.com/n7/jfs/t1/37162/11/8870/130954/5ccfe770E9ce31151/74a5a5dcd83ecc09.jpg
+Java从入门到项目实战（全程视频版） 编程入门/IT计算机书籍 65小时全程视频教学，著名软件技术讲师20年Java经验集成之作，配套源代码、课件、自测题、面试题，赠Java工程师学习路线、职业规划、自我修养视频课
+￥94.80
+================
+//img14.360buyimg.com/n7/jfs/t2191/111/699154754/198998/32d7bfe0/5624b582Nbc01af5b.jpg
+Java编程思想（第4版） Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉
+￥102.60<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>最后我们将爬到的数据放到封装到一个对象中：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Content</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> String title<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String img<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String price<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>抽取出一个工具类：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HtmlParseUtils</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
+        <span class="token keyword">new</span> <span class="token class-name">HtmlParseUtils</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">parseJD</span><span class="token punctuation">(</span><span class="token string">"理财"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Content<span class="token operator">></span> <span class="token function">parseJD</span><span class="token punctuation">(</span>String keyword<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 要解析的网址 https://search.jd.com/Search?keyword=java</span>
+        String url <span class="token operator">=</span> <span class="token string">"https://search.jd.com/Search?keyword="</span> <span class="token operator">+</span> keyword<span class="token punctuation">;</span>
+        Document document <span class="token operator">=</span> Jsoup<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">30000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Element j_goodsList <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"J_goodsList"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Elements elements <span class="token operator">=</span> j_goodsList<span class="token punctuation">.</span><span class="token function">getElementsByTag</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        ArrayList<span class="token operator">&lt;</span>Content<span class="token operator">></span> goodsList <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Element element <span class="token operator">:</span> elements<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            String img <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getElementsByTag</span><span class="token punctuation">(</span><span class="token string">"img"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">"src"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            String price <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getElementsByClass</span><span class="token punctuation">(</span><span class="token string">"p-price"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            String title <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getElementsByClass</span><span class="token punctuation">(</span><span class="token string">"p-name"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">eq</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            Content content <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Content</span><span class="token punctuation">(</span>title<span class="token punctuation">,</span> img<span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            goodsList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> goodsList<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>再次运行查看结果：</p>
+<pre class="line-numbers language-shell"><code class="language-shell">Content(title=稳赚：提升理财收益的投资工具, img=//img14.360buyimg.com/n1/s200x200_jfs/t1/32814/25/3917/206646/5c78c85aEc8bb3fda/78e04a9362cca59d.jpg, price=￥44.90)
+Content(title=财富自由（全球畅销500万册的经典理财图书） 财富自由（全球畅销500万册的经典理财图书）, img=//img10.360buyimg.com/n1/s200x200_jfs/t1/39027/26/11240/417294/5d26a434Ee2da780e/808a000ea395d03a.jpg, price=￥55.40 ￥53.70)
+Content(title=富爸爸穷爸爸（新版）本版随书附赠价值198元的“小白财商在线课程” 京东投资理财类畅销图书！富爸爸系列已发行多个国家和地区，助力众多读者的财务自由之路。, img=//img14.360buyimg.com/n1/s200x200_jfs/t1/59464/32/15191/425483/5dcbbae9Ec13d0c1b/3cca5be5d0c35f80.jpg, price=￥84.60 ￥82.10)
+Content(title=定投十年财务自由：省心省时省力懒人专享的理财书 省心省时省力，懒人专享的理财术。银行螺丝钉继《指数基金投资指南》后又一力作。雪球网创始人方三文做序推荐！, img=//img14.360buyimg.com/n1/s200x200_jfs/t1/71756/19/10829/141317/5d8442cdEb5ca2d93/6ced9af1e2053d00.jpg, price=￥56.10)
+Content(title=小狗钱钱套装（套装全2册：小狗钱钱+小狗钱钱2）吉娅的“金钱童话”关于财富，关于成长，关于诚实，关于爱 小狗钱钱套装（套装全2册：小狗钱钱+小狗钱钱2）吉娅的“金钱童话”关于财富，关于成长，关于诚实，关于爱, img=//img12.360buyimg.com/n1/s200x200_jfs/t16762/26/2374139683/314572/82077844/5af006b3N63e43e5c.jpg, price=￥60.80)
+Content(title=财务自由之路（套装3册） 财务自由之路（套装3册）, img=//img10.360buyimg.com/n1/s200x200_jfs/t1/15561/3/7270/383011/5c6a053fE76082f98/c5ea5c41fa71cadd.jpg, price=￥135.00 ￥131.00)
+Content(title=老百姓看得懂的银行理财产品：术语解析、常见风险与购买技巧, img=//img12.360buyimg.com/n1/s200x200_jfs/t24304/365/2619030930/220965/d5c6bf6/5b88e375N92f3475e.jpg, price=￥41.60)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+	</div>
+	<div class="post-nav">
+		<div class="post-nav-prev">
+				
+		</div>
+		<div class="post-nav-next">
+					
+						<a href="/2020/05/26/Jsoup%E5%9F%BA%E7%A1%80/" rel="next" title="Jsoup基础">
+							Jsoup基础&nbsp<i class="fa fa-angle-double-right"></i>
+						</a>
+				  	
+			</div>
+			<div class="clear"></div>
+	</div>		
+</article>
+
+<div class="post-toc">
+	<div class="toc-top">
+		文章目录
+	</div>
+	<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#导入Jsoup依赖"><span class="toc-text">导入Jsoup依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a></li></ol>
+</div>
+
+
+
+
+
+
+
+
+</section>	
+
+		</main>
+		<footer class="footer">
+	<div class="footer-info">
+		<p>
+			Copyright © 湛志良 2020
+		</p>
+		<p class="a">
+			Theme by <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>
+		</p> 
+	</div>
+</footer>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="/js/navbar.js"></script>
+
+
+<script src="/js/pace.min.js"></script>
+
+
+<script src="/js/code.js"></script>
+
+
+<script src="/js/load.js"></script>
+
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/post-except.js"></script>
+
+
+	
+<script src="/js/jquery.fancybox.js"></script>
+
+	
+<script src="/js/jquery.fancyboxStart.js"></script>
+
+	
+		
+<script src="/js/toc.js"></script>
+
+		
+<script src="/js/jquery.toTop.js"></script>
+
+	
+
+
+	<script src="https://unpkg.com/vanilla-back-to-top@7.2.0/dist/vanilla-back-to-top.min.js"></script>
+	
+<script src="/js/IndexToTop.js"></script>
+
+
+
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ec791a1cc0d7ff3"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</body>	
+</html>	
