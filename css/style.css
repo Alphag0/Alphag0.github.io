@@ -13,7 +13,8 @@
   background-color: #53b3fa;
 }
 body {
-  background-image: url("https://i.loli.net/2019/12/05/tFbgAdpqDZQzkBM.png");
+  background-image: url("https://cdn.jsdelivr.net/gh/Alphag0/pic@master/tFbgAdpqDZQzkBM.webp
+");
   font-size: 1.25rem;
   letter-spacing: 0.5px;
   color: #34495e;
@@ -35,7 +36,7 @@ body {
 .header {
   height: 500px;
   font-family: Lato;
-  background: url("https://blog-1258750961.cos.ap-beijing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/study.jpg") -266px -172px;
+  background: url("https://cdn.jsdelivr.net/gh/Alphag0/pic@master/study.jpg") -266px -172px;
   font-weight: bold;
   display: flex;
   flex-direction: column;
@@ -244,7 +245,7 @@ body {
   align-items: center;
   text-align: center;
   font-family: Lato;
-  background: url("https://blog-1258750961.cos.ap-beijing.myqcloud.com/%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/study.jpg") -20px 330px;
+  background: url("https://cdn.jsdelivr.net/gh/Alphag0/pic@master/study.jpg") -20px 330px;
   font-size: 18px;
   font-weight: bold;
   color: #fff;
