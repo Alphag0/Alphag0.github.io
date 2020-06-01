@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scaleable=0" name="viewport">
+	<title>Zaccheus | blog</title>
+	
+<link rel="stylesheet" href="/css/style.css">
+
+	
+<link rel="stylesheet" href="/css/third%20party/jquery.fancybox.css">
+
+	<link rel="icon" href="/images/avatar.jpg">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+	<body>
+		<header class="header">
+	<div class="header_top">
+		<span class="theme">
+			<a href="/">
+				Zaccheus | blog
+			</a>	
+		</span>
+		<nav class="navbar">
+			<ul class="menu">
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/" class="menu-item-link">
+							首页
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/categories" class="menu-item-link">
+							分类
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/archives" class="menu-item-link">
+							归档
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/tags" class="menu-item-link">
+							标签
+						</a>
+					</li>
+				
+					<li class="menu-item">
+						<i class="fa fa-"></i>
+						<a href="/about" class="menu-item-link">
+							关于我
+						</a>
+					</li>
+					
+			</ul>
+		</nav>
+	</div>
+	<i id="homelink" data-link="http://alphag0.github.io/"></i>
+	<div class="header_bottom">
+		<div class="blog-title">
+			<div class="descrs">
+				<div class="descr">湛湛的个人博客</div>
+				<br>
+				<div class="descr">" 聪明在于学习 , 天才在于积累 "</div>
+			</div>
+			<div class="blog-down">
+				<a href="javascript:void(0);">
+					<i class="fa fa-angle-double-down fa-2x"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+		<main class="main">
+			<section class="posts">
+	<article class="post_full"> 
+	<h1 class="post-title">
+		<div class="post-title-link">
+			Docker
+		</div>
+	</h1>
+	
+	<div class="post-info">
+		<div class="post-date">
+				<i class="fa fa-calendar"></i>&nbsp2020-06-01&nbsp&nbsp&nbsp
+		</div>
+		
+				<span class="post-words">
+					<i class="fa fa-pencil-square-o"></i>&nbsp1.6k&nbsp字&nbsp&nbsp
+				</span>
+				<span class="post-time">
+					<i class="fa fa-clock-o"></i>&nbsp7 分钟&nbsp&nbsp&nbsp
+				</span>
+		
+		<div class="post-tags">
+			
+    
+        <i class="fa fa-tags"></i>  <a href="/tags/Docker/"> Docker</a>
+    
+		</div>
+	</div>
+	<div class="post-content">
+		<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h3><pre class="line-numbers language-shell"><code class="language-shell">docker version        # 显示docker版本信息
+docker info           # 显示docker的系统信息
+docker 命令 --help         # 帮助命令<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h3><pre class="line-numbers language-shell"><code class="language-shell">docker pull
+docker rm -f # 强制删除
+docker rmi -f
+docker images -aq # 全部 id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h3><pre class="line-numbers language-shell"><code class="language-shell">docker run [可选参数] image
+# 参数说明
+--name="Name" # 容器名字
+-d            # 后台方式运行
+-it           # 交互方式运行，进入容器查看
+-p 8080:8080  # 指定容器的端口 -p 主机端口:容器端口
+-P            # 随机指定端口
+-v 主机目录:容器内目录 #使用数据卷
+-e            # 环境
+
+docker run -it centos /bin/bash
+
+# 显示日志
+docker logs
+-tf
+--tail # 要显示的日志条数
+
+# 运行的容器进程信息
+docker top
+
+# 查看容器元数据
+docker inspect
+
+# 进入当前正在运行的容器
+docker exec -it b36969b8061f # 打开一个新的终端，可以在里面操作
+
+docker attach  # 进入正在执行的终端，不会启动新的进程
+
+#拷贝
+docker cp id:容器路径 主机路径
+
+# 启动和停止
+docker start
+docker stop
+docker restart
+docker kill    # 强制停止容器
+
+# 安装nginx
+docker run -d --name nginx01 -p 3344:80 nginx
+
+# 安装tomcat
+docker run -d --name tomcat01 -p 9000:8080 tomcat
+
+# 安装es
+docker run -d --name elasticsearch --net esnet -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms64m -Xmx512m" elasticsearch:7.7.0
+
+# 安装kibana --link
+docker run -it -d -e ELASTICSEARCH_URL=http://127.0.0.1:9200 --name kibana -p 5601:5601 --net esnet kibana:7.7.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="命令小结"><a href="#命令小结" class="headerlink" title="命令小结"></a>命令小结</h3><p><img src="https://cdn.jsdelivr.net/gh/Alphag0/pic@master/docker/1589890154075.png" alt=""></p>
+<pre class="line-numbers language-shell"><code class="language-shell">attach       # 当前 shell 下 attach 连接指定运行镜像
+build        # 通过Dockerfile定制镜像
+commit       # 提交当前容器为新的镜像
+cp           # 从容器中拷贝指定文件或者目录到宿主机中
+create       # 创建一个新的容器,同run,但不启动容器
+diff         # 查看docker容器变化
+events       # 从docker服务获取容器实时事件
+exec         # 在已存在的容器上运行命令
+export       # 导出容器的内容流作为一个tar归档文件[对应 import ]
+history      # 展示一个镜像形成历史
+images       # 列出系统当前镜像
+import       # 从tar包中的内容创建一个新的文件系统映像[对应export]
+info         # 显示系统相关信息
+inspect      # 查看容器详细信息
+kill         # kill 指定 docker 容器
+load         # 从一个tar包中加载一个镜像[对应save]
+login        # 注册或者登陆一个docker源服务器
+logout       # 从当前Docker registry 退出
+logs         # 输出当前容器日志信息
+port         # 查看映射端口对应的容器内部源端
+pause        # 暂停容器
+ps           # 列出容器列表
+pull         # 从docker镜像源服务器拉取指定镜像或者库镜像
+push         # 推送指定镜像或者库镜像至docker源
+restart      # 重启运行的容器
+rm           # 移除一个或者多个容器
+rmi          # 移除一个或多个镜像[无容器使用该镜像才可删除,否则需删除相关容器才可继续或-f强制删除]
+run          # 创建一个新的容器并运行一个命令
+save         # 保存一个镜像为一个tar包[对应1oad]
+search       # 在docker hub 中搜索镜像
+start        # 启动容器
+stop         # 停止容器
+tag          # 给源中镜像打标签
+top          # 查看容器中运行的进程信息
+unpause      # 取消暂停容器
+version      # 查看docker版本号
+wait         # 截取容器停止时的退出状态值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h2><pre class="line-numbers language-shell"><code class="language-shell"># -v 挂载
+docker run -it -v 主机目录:容器内目录
+
+# 安装mysql
+docker run -d -p 33333:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:5.7
+
+# 查看docker元数据
+docker inspeect<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><pre class="line-numbers language-shell"><code class="language-shell"># --volumes-from
+docker run -it --name docker02 --volumes-from docker01 my-centos:1.0
+
+# 多个mysql同步数据
+docker run -d -p 33333:3306 -v /etc/mysql/conf.d -v /var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:5.7
+
+docker run -d -p 33334:3306 -e MYSQL_ROOT_PASSWORD=123456 --name mysql02 --volumes-form mysql01 mysql:5.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><blockquote>
+<p>构建步骤：</p>
+<ol>
+<li>编写一个 dockerfile 文件</li>
+<li>docker build 构建为一个镜像</li>
+<li>docker run 运行镜像</li>
+<li>docker push 发布镜像（DockerHub、阿里云镜像仓库）</li>
+</ol>
+</blockquote>
+<h3 id="Dockerfile指令"><a href="#Dockerfile指令" class="headerlink" title="Dockerfile指令"></a>Dockerfile指令</h3><pre class="line-numbers language-shell"><code class="language-shell">FROM          # 基础镜镜像，一切从这里开始构建
+MAINTAINER    # 镜像是谁写的,姓名+邮箱
+RUN           # 镜像构建的时候需要运行的命令
+ADD           # 步骤: tomcat镜像,这个tomcat压缩包!添加内容
+WORKDIR       # 镜像的工作目录
+VOLUME        # 挂载的目录
+EXPOSE        # 暴露端口配置
+CMD           # 指定这个容器启动的时候要运行的命令,只有最后一个会生效，可被替代
+ENTRYPOINT    # 指定这个容器启动的时候要运行的命令,可以追加命令
+ONBUILD       # 当构建一个被继承DockerFile这个时候就会运行ONBUILD 的指令。触发指令。
+COPY          # 类似ADD ,将我们文件拷见到镜像
+ENV           # 构建的时候设置环境变量!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Dockerfile示例一（通过VOLUME添加卷挂载）"><a href="#Dockerfile示例一（通过VOLUME添加卷挂载）" class="headerlink" title="Dockerfile示例一（通过VOLUME添加卷挂载）"></a>Dockerfile示例一（通过VOLUME添加卷挂载）</h3><pre class="line-numbers language-shell"><code class="language-shell">FROM centos
+
+# 匿名挂载
+VOLUME ["volume01","volume02"]
+
+CMD echo "--------end---------"
+CMD /bin/bash
+
+# 构建
+# -f Dockerfile文件的地址
+# -t 生成的镜像名
+docker build -f /home/dockerfile1 -t my-centos:1.0 .<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Dockerfile示例二（为centos添加vim等命令）"><a href="#Dockerfile示例二（为centos添加vim等命令）" class="headerlink" title="Dockerfile示例二（为centos添加vim等命令）"></a>Dockerfile示例二（为centos添加vim等命令）</h3><pre class="line-numbers language-shell"><code class="language-shell">FROM centos
+MAINTAINER zzl<1056674185@qq.com>
+
+ENV MYPATH /usr/local
+WORKDIR $MYPATH
+
+RUN yum -y install vim
+RUN yum -y install net-tools
+
+# 暴露端口
+EXPOSE 80
+CMD echo $MYPATH
+CMD echo "----end----"
+CMD /bin/bash<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Dockerfile示例三（CMD和ENTRYPOINT的区别）"><a href="#Dockerfile示例三（CMD和ENTRYPOINT的区别）" class="headerlink" title="Dockerfile示例三（CMD和ENTRYPOINT的区别）"></a>Dockerfile示例三（CMD和ENTRYPOINT的区别）</h3><pre class="line-numbers language-shell"><code class="language-shell"># 编写 dockerfile 文件
+FROM centos
+# ls -a
+CMD ["ls","-a"]
+# 或
+ENTRYPOINT ["ls","-a"]
+# 构建镜像
+docker build -f dockerfile-cmd-test -t cmdtest .
+# run 运行 CMD会报错 / ENTRYPOINT会执行ls -al
+docker run 容器id -l<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Dockerfile示例四（制作tomcat镜像）"><a href="#Dockerfile示例四（制作tomcat镜像）" class="headerlink" title="Dockerfile示例四（制作tomcat镜像）"></a>Dockerfile示例四（制作tomcat镜像）</h3><pre class="line-numbers language-shell"><code class="language-shell"># 准备压缩包
+# apache-tomcat-9.0.35.tar.gz
+# jdk-8u251-linux-x64.tar.gz
+# --------编写Dockerfile-----------
+FROM centos
+MAINTAINER zzl<1056674185@qq.com>
+
+# 拷贝当前目录下文件到usr中
+COPY readme.txt /usr/local/readme.txt
+
+ADD jdk-8u251-linux-x64.tar.gz /usr/local/
+ADD apache-tomcat-9.0.35.tar.gz /usr/local/
+
+RUN yum -y install vim
+
+ENV MYPATH /usr/local
+WORKDIR $MYPATH
+
+# 配置环境
+ENV JAVA_HOME /usr/local/jdk1.8.0_251
+ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+ENV CATALINA_HOME /usr/local/apache-tomcat-9.0.35
+ENV CATALINA_BASH /usr/local/apache-tomcat-9.0.35
+ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/lib:$CATALINA_HOME/bin
+
+EXPOSE 8080
+
+# 执行tomcat
+CMD /usr/local/apache-tomcat-9.0.35/bin/startup.sh && tail -F /url/local/apache-tomcat-9.0.35/bin/logs/catalina.out
+
+# -----------Dockerfile end------------
+
+# build
+docker build -t mytomcat .
+
+# 运行自制镜像
+docker run -d -p 9000:8080 --name mytomcat -v /home/zzl/build/tomcat/test:/usr/local/apache-tomcat-9.0.35/webapps/test -v /home/zzl/build/tomcat/logs/:/usr/local/apache-tomcat-9.0.35/logs mytomcat
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="docker网络"><a href="#docker网络" class="headerlink" title="docker网络"></a>docker网络</h2><pre class="line-numbers language-shell"><code class="language-shell"># 创建网络
+# --driver bridge    默认桥接
+# --subnet 192.168.0.0/16    子网ip
+# --gateway 192.168.0.1    网关
+docker network create --driver bridge --subnet 192.168.0.0/16 --gateway 192.168.0.1 mynet
+
+# 启动容器
+docker run -d -P --name mynet-tomcat --net mynet tomcat
+
+# 网卡相连
+docker network connect esnet <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+	</div>
+	<div class="post-nav">
+		<div class="post-nav-prev">
+				
+		</div>
+		<div class="post-nav-next">
+					
+						<a href="/2020/05/26/Jsoup%E5%AE%9E%E6%88%98/" rel="next" title="Jsoup实战（爬取京东商品信息）">
+							Jsoup实战（爬取京东商品信息）&nbsp<i class="fa fa-angle-double-right"></i>
+						</a>
+				  	
+			</div>
+			<div class="clear"></div>
+	</div>		
+</article>
+
+<div class="post-toc">
+	<div class="toc-top">
+		文章目录
+	</div>
+	<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker"><span class="toc-text">Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#帮助命令"><span class="toc-text">帮助命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#镜像命令"><span class="toc-text">镜像命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#容器命令"><span class="toc-text">容器命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令小结"><span class="toc-text">命令小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据卷"><span class="toc-text">数据卷</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据卷容器"><span class="toc-text">数据卷容器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dockerfile"><span class="toc-text">Dockerfile</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile指令"><span class="toc-text">Dockerfile指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile示例一（通过VOLUME添加卷挂载）"><span class="toc-text">Dockerfile示例一（通过VOLUME添加卷挂载）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile示例二（为centos添加vim等命令）"><span class="toc-text">Dockerfile示例二（为centos添加vim等命令）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile示例三（CMD和ENTRYPOINT的区别）"><span class="toc-text">Dockerfile示例三（CMD和ENTRYPOINT的区别）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile示例四（制作tomcat镜像）"><span class="toc-text">Dockerfile示例四（制作tomcat镜像）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker网络"><span class="toc-text">docker网络</span></a></li></ol></li></ol>
+</div>
+
+
+
+
+
+
+
+
+</section>	
+
+		</main>
+		<footer class="footer">
+	<div class="footer-info">
+		<p>
+			Copyright © 湛志良 2020
+		</p>
+		<p class="a">
+			Theme by <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>
+		</p> 
+	</div>
+</footer>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="/js/navbar.js"></script>
+
+
+<script src="/js/pace.min.js"></script>
+
+
+<script src="/js/code.js"></script>
+
+
+<script src="/js/load.js"></script>
+
+
+<script src="/js/search.js"></script>
+
+
+<script src="/js/post-except.js"></script>
+
+
+	
+<script src="/js/jquery.fancybox.js"></script>
+
+	
+<script src="/js/jquery.fancyboxStart.js"></script>
+
+	
+		
+<script src="/js/toc.js"></script>
+
+		
+<script src="/js/jquery.toTop.js"></script>
+
+	
+
+
+	<script src="https://unpkg.com/vanilla-back-to-top@7.2.0/dist/vanilla-back-to-top.min.js"></script>
+	
+<script src="/js/IndexToTop.js"></script>
+
+
+
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ec791a1cc0d7ff3"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</body>	
+</html>	
