@@ -12,8 +12,7 @@
 
 	<link rel="icon" href="/images/avatar.jpg">
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 	<body>
 		<header class="header">
 	<div class="header_top">
@@ -109,114 +108,114 @@
 		</div>
 	</div>
 	<div class="post-content">
-		<h2 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h2><h3 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h3><pre class="line-numbers language-shell"><code class="language-shell">docker version        # 显示docker版本信息
-docker info           # 显示docker的系统信息
-docker 命令 --help         # 帮助命令<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h3><pre class="line-numbers language-shell"><code class="language-shell">docker pull
-docker rm -f # 强制删除
+		<h2 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h2><h3 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h3><pre class=" language-bash"><code class="language-bash">docker version        <span class="token comment" spellcheck="true"># 显示docker版本信息</span>
+docker info           <span class="token comment" spellcheck="true"># 显示docker的系统信息</span>
+docker 命令 --help         <span class="token comment" spellcheck="true"># 帮助命令</span></code></pre>
+<h3 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h3><pre class=" language-bash"><code class="language-bash">docker pull
+docker <span class="token function">rm</span> -f <span class="token comment" spellcheck="true"># 强制删除</span>
 docker rmi -f
-docker images -aq # 全部 id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h3><pre class="line-numbers language-shell"><code class="language-shell">docker run [可选参数] image
-# 参数说明
---name="Name" # 容器名字
--d            # 后台方式运行
--it           # 交互方式运行，进入容器查看
--p 8080:8080  # 指定容器的端口 -p 主机端口:容器端口
--P            # 随机指定端口
--v 主机目录:容器内目录 #使用数据卷
--e            # 环境
+docker images -aq <span class="token comment" spellcheck="true"># 全部 id</span></code></pre>
+<h3 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h3><pre class=" language-bash"><code class="language-bash">docker run <span class="token punctuation">[</span>可选参数<span class="token punctuation">]</span> image
+<span class="token comment" spellcheck="true"># 参数说明</span>
+--name<span class="token operator">=</span><span class="token string">"Name"</span> <span class="token comment" spellcheck="true"># 容器名字</span>
+-d            <span class="token comment" spellcheck="true"># 后台方式运行</span>
+-it           <span class="token comment" spellcheck="true"># 交互方式运行，进入容器查看</span>
+-p 8080:8080  <span class="token comment" spellcheck="true"># 指定容器的端口 -p 主机端口:容器端口</span>
+-P            <span class="token comment" spellcheck="true"># 随机指定端口</span>
+-v 主机目录:容器内目录 <span class="token comment" spellcheck="true">#使用数据卷</span>
+-e            <span class="token comment" spellcheck="true"># 环境</span>
 
 docker run -it centos /bin/bash
 
-# 显示日志
+<span class="token comment" spellcheck="true"># 显示日志</span>
 docker logs
 -tf
---tail # 要显示的日志条数
+--tail <span class="token comment" spellcheck="true"># 要显示的日志条数</span>
 
-# 运行的容器进程信息
-docker top
+<span class="token comment" spellcheck="true"># 运行的容器进程信息</span>
+docker <span class="token function">top</span>
 
-# 查看容器元数据
+<span class="token comment" spellcheck="true"># 查看容器元数据</span>
 docker inspect
 
-# 进入当前正在运行的容器
-docker exec -it b36969b8061f # 打开一个新的终端，可以在里面操作
+<span class="token comment" spellcheck="true"># 进入当前正在运行的容器</span>
+docker <span class="token function">exec</span> -it b36969b8061f <span class="token comment" spellcheck="true"># 打开一个新的终端，可以在里面操作</span>
 
-docker attach  # 进入正在执行的终端，不会启动新的进程
+docker attach  <span class="token comment" spellcheck="true"># 进入正在执行的终端，不会启动新的进程</span>
 
-#拷贝
-docker cp id:容器路径 主机路径
+<span class="token comment" spellcheck="true">#拷贝</span>
+docker <span class="token function">cp</span> id:容器路径 主机路径
 
-# 启动和停止
+<span class="token comment" spellcheck="true"># 启动和停止</span>
 docker start
 docker stop
 docker restart
-docker kill    # 强制停止容器
+docker <span class="token function">kill</span>    <span class="token comment" spellcheck="true"># 强制停止容器</span>
 
-# 安装nginx
+<span class="token comment" spellcheck="true"># 安装nginx</span>
 docker run -d --name nginx01 -p 3344:80 nginx
 
-# 安装tomcat
+<span class="token comment" spellcheck="true"># 安装tomcat</span>
 docker run -d --name tomcat01 -p 9000:8080 tomcat
 
-# 安装es
-docker run -d --name elasticsearch --net esnet -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" -e ES_JAVA_OPTS="-Xms64m -Xmx512m" elasticsearch:7.7.0
+<span class="token comment" spellcheck="true"># 安装es</span>
+docker run -d --name elasticsearch --net esnet -p 9200:9200 -p 9300:9300 -e <span class="token string">"discovery.type=single-node"</span> -e ES_JAVA_OPTS<span class="token operator">=</span><span class="token string">"-Xms64m -Xmx512m"</span> elasticsearch:7.7.0
 
-# 安装kibana --link
-docker run -it -d -e ELASTICSEARCH_URL=http://127.0.0.1:9200 --name kibana -p 5601:5601 --net esnet kibana:7.7.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment" spellcheck="true"># 安装kibana --link</span>
+docker run -it -d -e ELASTICSEARCH_URL<span class="token operator">=</span>http://127.0.0.1:9200 --name kibana -p 5601:5601 --net esnet kibana:7.7.0</code></pre>
 <h3 id="命令小结"><a href="#命令小结" class="headerlink" title="命令小结"></a>命令小结</h3><p><img src="https://cdn.jsdelivr.net/gh/Alphag0/pic@master/docker/1589890154075.png" alt=""></p>
-<pre class="line-numbers language-shell"><code class="language-shell">attach       # 当前 shell 下 attach 连接指定运行镜像
-build        # 通过Dockerfile定制镜像
-commit       # 提交当前容器为新的镜像
-cp           # 从容器中拷贝指定文件或者目录到宿主机中
-create       # 创建一个新的容器,同run,但不启动容器
-diff         # 查看docker容器变化
-events       # 从docker服务获取容器实时事件
-exec         # 在已存在的容器上运行命令
-export       # 导出容器的内容流作为一个tar归档文件[对应 import ]
-history      # 展示一个镜像形成历史
-images       # 列出系统当前镜像
-import       # 从tar包中的内容创建一个新的文件系统映像[对应export]
-info         # 显示系统相关信息
-inspect      # 查看容器详细信息
-kill         # kill 指定 docker 容器
-load         # 从一个tar包中加载一个镜像[对应save]
-login        # 注册或者登陆一个docker源服务器
-logout       # 从当前Docker registry 退出
-logs         # 输出当前容器日志信息
-port         # 查看映射端口对应的容器内部源端
-pause        # 暂停容器
-ps           # 列出容器列表
-pull         # 从docker镜像源服务器拉取指定镜像或者库镜像
-push         # 推送指定镜像或者库镜像至docker源
-restart      # 重启运行的容器
-rm           # 移除一个或者多个容器
-rmi          # 移除一个或多个镜像[无容器使用该镜像才可删除,否则需删除相关容器才可继续或-f强制删除]
-run          # 创建一个新的容器并运行一个命令
-save         # 保存一个镜像为一个tar包[对应1oad]
-search       # 在docker hub 中搜索镜像
-start        # 启动容器
-stop         # 停止容器
-tag          # 给源中镜像打标签
-top          # 查看容器中运行的进程信息
-unpause      # 取消暂停容器
-version      # 查看docker版本号
-wait         # 截取容器停止时的退出状态值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h2><pre class="line-numbers language-shell"><code class="language-shell"># -v 挂载
+<pre class=" language-bash"><code class="language-bash">attach       <span class="token comment" spellcheck="true"># 当前 shell 下 attach 连接指定运行镜像</span>
+build        <span class="token comment" spellcheck="true"># 通过Dockerfile定制镜像</span>
+commit       <span class="token comment" spellcheck="true"># 提交当前容器为新的镜像</span>
+<span class="token function">cp</span>           <span class="token comment" spellcheck="true"># 从容器中拷贝指定文件或者目录到宿主机中</span>
+create       <span class="token comment" spellcheck="true"># 创建一个新的容器,同run,但不启动容器</span>
+<span class="token function">diff</span>         <span class="token comment" spellcheck="true"># 查看docker容器变化</span>
+events       <span class="token comment" spellcheck="true"># 从docker服务获取容器实时事件</span>
+<span class="token function">exec</span>         <span class="token comment" spellcheck="true"># 在已存在的容器上运行命令</span>
+<span class="token function">export</span>       <span class="token comment" spellcheck="true"># 导出容器的内容流作为一个tar归档文件[对应 import ]</span>
+<span class="token function">history</span>      <span class="token comment" spellcheck="true"># 展示一个镜像形成历史</span>
+images       <span class="token comment" spellcheck="true"># 列出系统当前镜像</span>
+<span class="token function">import</span>       <span class="token comment" spellcheck="true"># 从tar包中的内容创建一个新的文件系统映像[对应export]</span>
+info         <span class="token comment" spellcheck="true"># 显示系统相关信息</span>
+inspect      <span class="token comment" spellcheck="true"># 查看容器详细信息</span>
+<span class="token function">kill</span>         <span class="token comment" spellcheck="true"># kill 指定 docker 容器</span>
+load         <span class="token comment" spellcheck="true"># 从一个tar包中加载一个镜像[对应save]</span>
+login        <span class="token comment" spellcheck="true"># 注册或者登陆一个docker源服务器</span>
+<span class="token function">logout</span>       <span class="token comment" spellcheck="true"># 从当前Docker registry 退出</span>
+logs         <span class="token comment" spellcheck="true"># 输出当前容器日志信息</span>
+port         <span class="token comment" spellcheck="true"># 查看映射端口对应的容器内部源端</span>
+pause        <span class="token comment" spellcheck="true"># 暂停容器</span>
+<span class="token function">ps</span>           <span class="token comment" spellcheck="true"># 列出容器列表</span>
+pull         <span class="token comment" spellcheck="true"># 从docker镜像源服务器拉取指定镜像或者库镜像</span>
+push         <span class="token comment" spellcheck="true"># 推送指定镜像或者库镜像至docker源</span>
+restart      <span class="token comment" spellcheck="true"># 重启运行的容器</span>
+<span class="token function">rm</span>           <span class="token comment" spellcheck="true"># 移除一个或者多个容器</span>
+rmi          <span class="token comment" spellcheck="true"># 移除一个或多个镜像[无容器使用该镜像才可删除,否则需删除相关容器才可继续或-f强制删除]</span>
+run          <span class="token comment" spellcheck="true"># 创建一个新的容器并运行一个命令</span>
+save         <span class="token comment" spellcheck="true"># 保存一个镜像为一个tar包[对应1oad]</span>
+search       <span class="token comment" spellcheck="true"># 在docker hub 中搜索镜像</span>
+start        <span class="token comment" spellcheck="true"># 启动容器</span>
+stop         <span class="token comment" spellcheck="true"># 停止容器</span>
+tag          <span class="token comment" spellcheck="true"># 给源中镜像打标签</span>
+<span class="token function">top</span>          <span class="token comment" spellcheck="true"># 查看容器中运行的进程信息</span>
+unpause      <span class="token comment" spellcheck="true"># 取消暂停容器</span>
+version      <span class="token comment" spellcheck="true"># 查看docker版本号</span>
+<span class="token function">wait</span>         <span class="token comment" spellcheck="true"># 截取容器停止时的退出状态值</span></code></pre>
+<h2 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># -v 挂载</span>
 docker run -it -v 主机目录:容器内目录
 
-# 安装mysql
-docker run -d -p 33333:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:5.7
+<span class="token comment" spellcheck="true"># 安装mysql</span>
+docker run -d -p 33333:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD<span class="token operator">=</span>123456 --name mysql01 mysql:5.7
 
-# 查看docker元数据
-docker inspeect<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><pre class="line-numbers language-shell"><code class="language-shell"># --volumes-from
+<span class="token comment" spellcheck="true"># 查看docker元数据</span>
+docker inspeect</code></pre>
+<h3 id="数据卷容器"><a href="#数据卷容器" class="headerlink" title="数据卷容器"></a>数据卷容器</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># --volumes-from</span>
 docker run -it --name docker02 --volumes-from docker01 my-centos:1.0
 
-# 多个mysql同步数据
-docker run -d -p 33333:3306 -v /etc/mysql/conf.d -v /var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql01 mysql:5.7
+<span class="token comment" spellcheck="true"># 多个mysql同步数据</span>
+docker run -d -p 33333:3306 -v /etc/mysql/conf.d -v /var/lib/mysql -e MYSQL_ROOT_PASSWORD<span class="token operator">=</span>123456 --name mysql01 mysql:5.7
 
-docker run -d -p 33334:3306 -e MYSQL_ROOT_PASSWORD=123456 --name mysql02 --volumes-form mysql01 mysql:5.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+docker run -d -p 33334:3306 -e MYSQL_ROOT_PASSWORD<span class="token operator">=</span>123456 --name mysql02 --volumes-form mysql01 mysql:5.7</code></pre>
 <h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><blockquote>
 <p>构建步骤：</p>
 <ol>
@@ -226,103 +225,103 @@ docker run -d -p 33334:3306 -e MYSQL_ROOT_PASSWORD=123456 --name mysql02 --volum
 <li>docker push 发布镜像（DockerHub、阿里云镜像仓库）</li>
 </ol>
 </blockquote>
-<h3 id="Dockerfile指令"><a href="#Dockerfile指令" class="headerlink" title="Dockerfile指令"></a>Dockerfile指令</h3><pre class="line-numbers language-shell"><code class="language-shell">FROM          # 基础镜镜像，一切从这里开始构建
-MAINTAINER    # 镜像是谁写的,姓名+邮箱
-RUN           # 镜像构建的时候需要运行的命令
-ADD           # 步骤: tomcat镜像,这个tomcat压缩包!添加内容
-WORKDIR       # 镜像的工作目录
-VOLUME        # 挂载的目录
-EXPOSE        # 暴露端口配置
-CMD           # 指定这个容器启动的时候要运行的命令,只有最后一个会生效，可被替代
-ENTRYPOINT    # 指定这个容器启动的时候要运行的命令,可以追加命令
-ONBUILD       # 当构建一个被继承DockerFile这个时候就会运行ONBUILD 的指令。触发指令。
-COPY          # 类似ADD ,将我们文件拷见到镜像
-ENV           # 构建的时候设置环境变量!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Dockerfile示例一（通过VOLUME添加卷挂载）"><a href="#Dockerfile示例一（通过VOLUME添加卷挂载）" class="headerlink" title="Dockerfile示例一（通过VOLUME添加卷挂载）"></a>Dockerfile示例一（通过VOLUME添加卷挂载）</h3><pre class="line-numbers language-shell"><code class="language-shell">FROM centos
+<h3 id="Dockerfile指令"><a href="#Dockerfile指令" class="headerlink" title="Dockerfile指令"></a>Dockerfile指令</h3><pre class=" language-bash"><code class="language-bash">FROM          <span class="token comment" spellcheck="true"># 基础镜镜像，一切从这里开始构建</span>
+MAINTAINER    <span class="token comment" spellcheck="true"># 镜像是谁写的,姓名+邮箱</span>
+RUN           <span class="token comment" spellcheck="true"># 镜像构建的时候需要运行的命令</span>
+ADD           <span class="token comment" spellcheck="true"># 步骤: tomcat镜像,这个tomcat压缩包!添加内容</span>
+WORKDIR       <span class="token comment" spellcheck="true"># 镜像的工作目录</span>
+VOLUME        <span class="token comment" spellcheck="true"># 挂载的目录</span>
+EXPOSE        <span class="token comment" spellcheck="true"># 暴露端口配置</span>
+CMD           <span class="token comment" spellcheck="true"># 指定这个容器启动的时候要运行的命令,只有最后一个会生效，可被替代</span>
+ENTRYPOINT    <span class="token comment" spellcheck="true"># 指定这个容器启动的时候要运行的命令,可以追加命令</span>
+ONBUILD       <span class="token comment" spellcheck="true"># 当构建一个被继承DockerFile这个时候就会运行ONBUILD 的指令。触发指令。</span>
+COPY          <span class="token comment" spellcheck="true"># 类似ADD ,将我们文件拷见到镜像</span>
+ENV           <span class="token comment" spellcheck="true"># 构建的时候设置环境变量!</span></code></pre>
+<h3 id="Dockerfile示例一（通过VOLUME添加卷挂载）"><a href="#Dockerfile示例一（通过VOLUME添加卷挂载）" class="headerlink" title="Dockerfile示例一（通过VOLUME添加卷挂载）"></a>Dockerfile示例一（通过VOLUME添加卷挂载）</h3><pre class=" language-bash"><code class="language-bash">FROM centos
 
-# 匿名挂载
-VOLUME ["volume01","volume02"]
+<span class="token comment" spellcheck="true"># 匿名挂载</span>
+VOLUME <span class="token punctuation">[</span><span class="token string">"volume01"</span>,<span class="token string">"volume02"</span><span class="token punctuation">]</span>
 
-CMD echo "--------end---------"
+CMD <span class="token keyword">echo</span> <span class="token string">"--------end---------"</span>
 CMD /bin/bash
 
-# 构建
-# -f Dockerfile文件的地址
-# -t 生成的镜像名
-docker build -f /home/dockerfile1 -t my-centos:1.0 .<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Dockerfile示例二（为centos添加vim等命令）"><a href="#Dockerfile示例二（为centos添加vim等命令）" class="headerlink" title="Dockerfile示例二（为centos添加vim等命令）"></a>Dockerfile示例二（为centos添加vim等命令）</h3><pre class="line-numbers language-shell"><code class="language-shell">FROM centos
-MAINTAINER zzl<1056674185@qq.com>
+<span class="token comment" spellcheck="true"># 构建</span>
+<span class="token comment" spellcheck="true"># -f Dockerfile文件的地址</span>
+<span class="token comment" spellcheck="true"># -t 生成的镜像名</span>
+docker build -f /home/dockerfile1 -t my-centos:1.0 <span class="token keyword">.</span></code></pre>
+<h3 id="Dockerfile示例二（为centos添加vim等命令）"><a href="#Dockerfile示例二（为centos添加vim等命令）" class="headerlink" title="Dockerfile示例二（为centos添加vim等命令）"></a>Dockerfile示例二（为centos添加vim等命令）</h3><pre class=" language-bash"><code class="language-bash">FROM centos
+MAINTAINER zzl<span class="token operator">&lt;</span>1056674185@qq.com<span class="token operator">></span>
 
 ENV MYPATH /usr/local
-WORKDIR $MYPATH
+WORKDIR <span class="token variable">$MYPATH</span>
 
-RUN yum -y install vim
-RUN yum -y install net-tools
+RUN yum -y <span class="token function">install</span> vim
+RUN yum -y <span class="token function">install</span> net-tools
 
-# 暴露端口
+<span class="token comment" spellcheck="true"># 暴露端口</span>
 EXPOSE 80
-CMD echo $MYPATH
-CMD echo "----end----"
-CMD /bin/bash<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Dockerfile示例三（CMD和ENTRYPOINT的区别）"><a href="#Dockerfile示例三（CMD和ENTRYPOINT的区别）" class="headerlink" title="Dockerfile示例三（CMD和ENTRYPOINT的区别）"></a>Dockerfile示例三（CMD和ENTRYPOINT的区别）</h3><pre class="line-numbers language-shell"><code class="language-shell"># 编写 dockerfile 文件
+CMD <span class="token keyword">echo</span> <span class="token variable">$MYPATH</span>
+CMD <span class="token keyword">echo</span> <span class="token string">"----end----"</span>
+CMD /bin/bash</code></pre>
+<h3 id="Dockerfile示例三（CMD和ENTRYPOINT的区别）"><a href="#Dockerfile示例三（CMD和ENTRYPOINT的区别）" class="headerlink" title="Dockerfile示例三（CMD和ENTRYPOINT的区别）"></a>Dockerfile示例三（CMD和ENTRYPOINT的区别）</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 编写 dockerfile 文件</span>
 FROM centos
-# ls -a
-CMD ["ls","-a"]
-# 或
-ENTRYPOINT ["ls","-a"]
-# 构建镜像
-docker build -f dockerfile-cmd-test -t cmdtest .
-# run 运行 CMD会报错 / ENTRYPOINT会执行ls -al
-docker run 容器id -l<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Dockerfile示例四（制作tomcat镜像）"><a href="#Dockerfile示例四（制作tomcat镜像）" class="headerlink" title="Dockerfile示例四（制作tomcat镜像）"></a>Dockerfile示例四（制作tomcat镜像）</h3><pre class="line-numbers language-shell"><code class="language-shell"># 准备压缩包
-# apache-tomcat-9.0.35.tar.gz
-# jdk-8u251-linux-x64.tar.gz
-# --------编写Dockerfile-----------
+<span class="token comment" spellcheck="true"># ls -a</span>
+CMD <span class="token punctuation">[</span><span class="token string">"ls"</span>,<span class="token string">"-a"</span><span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># 或</span>
+ENTRYPOINT <span class="token punctuation">[</span><span class="token string">"ls"</span>,<span class="token string">"-a"</span><span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># 构建镜像</span>
+docker build -f dockerfile-cmd-test -t cmdtest <span class="token keyword">.</span>
+<span class="token comment" spellcheck="true"># run 运行 CMD会报错 / ENTRYPOINT会执行ls -al</span>
+docker run 容器id -l</code></pre>
+<h3 id="Dockerfile示例四（制作tomcat镜像）"><a href="#Dockerfile示例四（制作tomcat镜像）" class="headerlink" title="Dockerfile示例四（制作tomcat镜像）"></a>Dockerfile示例四（制作tomcat镜像）</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 准备压缩包</span>
+<span class="token comment" spellcheck="true"># apache-tomcat-9.0.35.tar.gz</span>
+<span class="token comment" spellcheck="true"># jdk-8u251-linux-x64.tar.gz</span>
+<span class="token comment" spellcheck="true"># --------编写Dockerfile-----------</span>
 FROM centos
-MAINTAINER zzl<1056674185@qq.com>
+MAINTAINER zzl<span class="token operator">&lt;</span>1056674185@qq.com<span class="token operator">></span>
 
-# 拷贝当前目录下文件到usr中
+<span class="token comment" spellcheck="true"># 拷贝当前目录下文件到usr中</span>
 COPY readme.txt /usr/local/readme.txt
 
 ADD jdk-8u251-linux-x64.tar.gz /usr/local/
 ADD apache-tomcat-9.0.35.tar.gz /usr/local/
 
-RUN yum -y install vim
+RUN yum -y <span class="token function">install</span> vim
 
 ENV MYPATH /usr/local
-WORKDIR $MYPATH
+WORKDIR <span class="token variable">$MYPATH</span>
 
-# 配置环境
+<span class="token comment" spellcheck="true"># 配置环境</span>
 ENV JAVA_HOME /usr/local/jdk1.8.0_251
-ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+ENV CLASSPATH <span class="token variable">$JAVA_HOME</span>/lib/dt.jar:<span class="token variable">$JAVA_HOME</span>/lib/tools.jar
 ENV CATALINA_HOME /usr/local/apache-tomcat-9.0.35
 ENV CATALINA_BASH /usr/local/apache-tomcat-9.0.35
-ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/lib:$CATALINA_HOME/bin
+ENV PATH <span class="token variable">$PATH</span><span class="token keyword">:</span><span class="token variable">$JAVA_HOME</span>/bin:<span class="token variable">$CATALINA_HOME</span>/lib:<span class="token variable">$CATALINA_HOME</span>/bin
 
 EXPOSE 8080
 
-# 执行tomcat
-CMD /usr/local/apache-tomcat-9.0.35/bin/startup.sh && tail -F /url/local/apache-tomcat-9.0.35/bin/logs/catalina.out
+<span class="token comment" spellcheck="true"># 执行tomcat</span>
+CMD /usr/local/apache-tomcat-9.0.35/bin/startup.sh <span class="token operator">&amp;&amp;</span> <span class="token function">tail</span> -F /url/local/apache-tomcat-9.0.35/bin/logs/catalina.out
 
-# -----------Dockerfile end------------
+<span class="token comment" spellcheck="true"># -----------Dockerfile end------------</span>
 
-# build
-docker build -t mytomcat .
+<span class="token comment" spellcheck="true"># build</span>
+docker build -t mytomcat <span class="token keyword">.</span>
 
-# 运行自制镜像
+<span class="token comment" spellcheck="true"># 运行自制镜像</span>
 docker run -d -p 9000:8080 --name mytomcat -v /home/zzl/build/tomcat/test:/usr/local/apache-tomcat-9.0.35/webapps/test -v /home/zzl/build/tomcat/logs/:/usr/local/apache-tomcat-9.0.35/logs mytomcat
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="docker网络"><a href="#docker网络" class="headerlink" title="docker网络"></a>docker网络</h2><pre class="line-numbers language-shell"><code class="language-shell"># 创建网络
-# --driver bridge    默认桥接
-# --subnet 192.168.0.0/16    子网ip
-# --gateway 192.168.0.1    网关
+</code></pre>
+<h2 id="docker网络"><a href="#docker网络" class="headerlink" title="docker网络"></a>docker网络</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 创建网络</span>
+<span class="token comment" spellcheck="true"># --driver bridge    默认桥接</span>
+<span class="token comment" spellcheck="true"># --subnet 192.168.0.0/16    子网ip</span>
+<span class="token comment" spellcheck="true"># --gateway 192.168.0.1    网关</span>
 docker network create --driver bridge --subnet 192.168.0.0/16 --gateway 192.168.0.1 mynet
 
-# 启动容器
+<span class="token comment" spellcheck="true"># 启动容器</span>
 docker run -d -P --name mynet-tomcat --net mynet tomcat
 
-# 网卡相连
-docker network connect esnet <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment" spellcheck="true"># 网卡相连</span>
+docker network connect esnet </code></pre>
 
 	</div>
 	<div class="post-nav">

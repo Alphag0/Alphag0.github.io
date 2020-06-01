@@ -12,8 +12,7 @@
 
 	<link rel="icon" href="/images/avatar.jpg">
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 	<body>
 		<header class="header">
 	<div class="header_top">
@@ -109,30 +108,30 @@
 		</div>
 	</div>
 	<div class="post-content">
-		<h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><h4 id="1、字符输出"><a href="#1、字符输出" class="headerlink" title="1、字符输出"></a>1、字符输出</h4><pre class="line-numbers language-ftl"><code class="language-ftl">${emp.name?if_exists}　　　　　  　// 变量存在，输出该变量，否则不输出
+		<h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><h4 id="1、字符输出"><a href="#1、字符输出" class="headerlink" title="1、字符输出"></a>1、字符输出</h4><pre class=" language-ftl"><code class="language-ftl">${emp.name?if_exists}　　　　　  　// 变量存在，输出该变量，否则不输出
 ${emp.name!}　　　　　　　　　　    // 变量存在，输出该变量，否则不输出
 ${emp.name?default("xxx")}        // 变量不存在，取默认值xxx  
-${emp.name!"xxx"}    　　　　　　  // 变量不存在，取默认值xxx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+${emp.name!"xxx"}    　　　　　　  // 变量不存在，取默认值xxx</code></pre>
 <p>常用内部函数：</p>
-<pre class="line-numbers language-ftl"><code class="language-ftl">${"123<br>456"?html}    　　// 对字符串进行HTML编码，对html中特殊字符进行转义    
+<pre class=" language-ftl"><code class="language-ftl">${"123<br>456"?html}    　　// 对字符串进行HTML编码，对html中特殊字符进行转义    
 ${"str"?cap_first}    　　  // 使字符串第一个字母大写     
 ${"Str"?lower_case}        // 将字符串转换成小写     
 ${"Str"?upper_case}        // 将字符串转换成大写    
-${"str"?trim}              // 去掉字符串前后的空白字符   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+${"str"?trim}              // 去掉字符串前后的空白字符   </code></pre>
 <p>字符串的两种拼接方式拼接：</p>
-<pre class="line-numbers language-ftl"><code class="language-ftl">${ “你好${emp.name！}”} //输出你好+变量名  
-${“hello”+ emp.name！} //使用+号来连接，输出你好+变量名<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class=" language-ftl"><code class="language-ftl">${ “你好${emp.name！}”} //输出你好+变量名  
+${“hello”+ emp.name！} //使用+号来连接，输出你好+变量名</code></pre>
 <p>可以通过如下语法来截取子串：</p>
-<pre class="line-numbers language-ftl"><code class="language-ftl"><#assign str =“abcdefghijklmn”/>
+<pre class=" language-ftl"><code class="language-ftl"><#assign str =“abcdefghijklmn”/>
 //方法1
 ${str?substring（0,4）} //输出abcd
 //方法2 
 ${ str [ 0 ] } ${str [4]} //结果是ae
 ${str [1..4]} //结果是bcde
 //返回指定字符的索引
-${str?index_of（"n"）}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="2，日期输出"><a href="#2，日期输出" class="headerlink" title="2，日期输出"></a>2，日期输出</h4><pre class="line-numbers language-ftl"><code class="language-ftl">${emp.date?string（'yyyy -MM-dd'）} //日期格式<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h4 id="3，数字输出（以数字20为例）"><a href="#3，数字输出（以数字20为例）" class="headerlink" title="3，数字输出（以数字20为例）"></a>3，数字输出（以数字20为例）</h4><pre class="line-numbers language-ftl"><code class="language-ftl">${emp.name?string.number} //输出20  
+${str?index_of（"n"）}</code></pre>
+<h4 id="2，日期输出"><a href="#2，日期输出" class="headerlink" title="2，日期输出"></a>2，日期输出</h4><pre class=" language-ftl"><code class="language-ftl">${emp.date?string（'yyyy -MM-dd'）} //日期格式</code></pre>
+<h4 id="3，数字输出（以数字20为例）"><a href="#3，数字输出（以数字20为例）" class="headerlink" title="3，数字输出（以数字20为例）"></a>3，数字输出（以数字20为例）</h4><pre class=" language-ftl"><code class="language-ftl">${emp.name?string.number} //输出20  
 ${emp.name?string.currency} //¥20.00  
 ${emp.name?string.percent} // 20％  
 ${1.222？int} //将小数转为int，输出1  
@@ -156,11 +155,11 @@ MX：小数部分最大X位
 ＃ {x; m2} //输出2.58 
 ＃{Y; m2} //输出4.0
 ＃ {x; m1M2} //输出2.58 
-＃ {x; m1M2} //输出4.0 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="4，申明变量"><a href="#4，申明变量" class="headerlink" title="4，申明变量"></a>4，申明变量</h4><pre class="line-numbers language-ftl"><code class="language-ftl"><#assign foo = false /> //声明变量，插入布尔值进行显示，注意不要用引号
-${foo？string（“yes”，“no”）} //当为真时输出“yes”，否则输出“no”   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+＃ {x; m1M2} //输出4.0 </code></pre>
+<h4 id="4，申明变量"><a href="#4，申明变量" class="headerlink" title="4，申明变量"></a>4，申明变量</h4><pre class=" language-ftl"><code class="language-ftl"><#assign foo = false /> //声明变量，插入布尔值进行显示，注意不要用引号
+${foo？string（“yes”，“no”）} //当为真时输出“yes”，否则输出“no”   </code></pre>
 <p>申明变量的几种方式</p>
-<pre class="line-numbers language-ftl"><code class="language-ftl"><#assign name = value> 
+<pre class=" language-ftl"><code class="language-ftl"><#assign name = value> 
 <#assign name1 = value1 name2 = value2 ... nameN = valueN> 
 <#assign same as above... in namespacehash> 
 
@@ -170,24 +169,24 @@ ${foo？string（“yes”，“no”）} //当为真时输出“yes”，否则
 
 <#assign name in namespacehash> 
 capture this 
-</＃assign> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="5，比运算算符"><a href="#5，比运算算符" class="headerlink" title="5，比运算算符"></a>5，比运算算符</h4><pre class="line-numbers language-ftl"><code class="language-ftl">表达式中支持的比较运算符符如下几个：
+</＃assign> </code></pre>
+<h4 id="5，比运算算符"><a href="#5，比运算算符" class="headerlink" title="5，比运算算符"></a>5，比运算算符</h4><pre class=" language-ftl"><code class="language-ftl">表达式中支持的比较运算符符如下几个：
 =或==：判断两个值是否相等。
 ！=：判断两个值是否不等。
 >或gt：判断左边值是否大于右边值>
-<=或lte：判断左边值是否小于等于右边值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="6，算术运算符"><a href="#6，算术运算符" class="headerlink" title="6，算术运算符"></a>6，算术运算符</h4><pre class="line-numbers language-ftl"><code class="language-ftl">FreeMarker表达式中完全支持算术运算，
+<=或lte：判断左边值是否小于等于右边值</code></pre>
+<h4 id="6，算术运算符"><a href="#6，算术运算符" class="headerlink" title="6，算术运算符"></a>6，算术运算符</h4><pre class=" language-ftl"><code class="language-ftl">FreeMarker表达式中完全支持算术运算，
 FreeMarker支持的算术运算符包括：+， - ，*，/，％
 注意：
 （1）运算符两边必须是数字
 （2）使用+运算符时，如果一边是数字，一边是字符串，就会自动将数字转换为字符串再连接，
-     如：${3 +“5”}，结果是：35 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="7，逻辑运算符"><a href="#7，逻辑运算符" class="headerlink" title="7，逻辑运算符"></a>7，逻辑运算符</h4><pre class="line-numbers language-ftl"><code class="language-ftl">逻辑运算符有如下几个：
+     如：${3 +“5”}，结果是：35 </code></pre>
+<h4 id="7，逻辑运算符"><a href="#7，逻辑运算符" class="headerlink" title="7，逻辑运算符"></a>7，逻辑运算符</h4><pre class=" language-ftl"><code class="language-ftl">逻辑运算符有如下几个：
 逻辑与：&& 
 逻辑或：|| 
 逻辑非：！
-逻辑运算符只能作用于布尔值，否则将产生错误<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="8，FreeMarker中的运算符优先级如下（由高到低排列）"><a href="#8，FreeMarker中的运算符优先级如下（由高到低排列）" class="headerlink" title="8，FreeMarker中的运算符优先级如下（由高到低排列）"></a>8，FreeMarker中的运算符优先级如下（由高到低排列）</h4><pre class="line-numbers language-ftl"><code class="language-ftl">①，一元运算符：！
+逻辑运算符只能作用于布尔值，否则将产生错误</code></pre>
+<h4 id="8，FreeMarker中的运算符优先级如下（由高到低排列）"><a href="#8，FreeMarker中的运算符优先级如下（由高到低排列）" class="headerlink" title="8，FreeMarker中的运算符优先级如下（由高到低排列）"></a>8，FreeMarker中的运算符优先级如下（由高到低排列）</h4><pre class=" language-ftl"><code class="language-ftl">①，一元运算符：！
 ②，内建函数：
 ③，乘除法：*，/，％
 ④，加减法： - ，+ 
@@ -195,8 +194,8 @@ FreeMarker支持的算术运算符包括：+， - ，*，/，％
 ⑥，相等：==，=， ！= 
 ⑦，逻辑与：&& 
 ⑧，逻辑或：|| 
-⑨，数字范围：.. 实际上，我们在开发过程中应该使用括号来严格区分，这样的可读性好，出错少<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="9，if逻辑判断（注意：elseif不加空格）"><a href="#9，if逻辑判断（注意：elseif不加空格）" class="headerlink" title="9，if逻辑判断（注意：elseif不加空格）"></a>9，if逻辑判断（注意：elseif不加空格）</h4><pre class="line-numbers language-ftl"><code class="language-ftl"><#if condition>
+⑨，数字范围：.. 实际上，我们在开发过程中应该使用括号来严格区分，这样的可读性好，出错少</code></pre>
+<h4 id="9，if逻辑判断（注意：elseif不加空格）"><a href="#9，if逻辑判断（注意：elseif不加空格）" class="headerlink" title="9，if逻辑判断（注意：elseif不加空格）"></a>9，if逻辑判断（注意：elseif不加空格）</h4><pre class=" language-ftl"><code class="language-ftl"><#if condition>
 ...
 <#elseif condition2>
 ...
@@ -215,8 +214,8 @@ if 空值判断
 <#if "${isBig}">Wow!</#if>
 
 // 正确写法
-<#if isBig>Wow!</#if> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="10、switch-条件可为数字，可为字符串"><a href="#10、switch-条件可为数字，可为字符串" class="headerlink" title="10、switch (条件可为数字，可为字符串)"></a>10、switch (条件可为数字，可为字符串)</h4><pre class="line-numbers language-ftl"><code class="language-ftl"><#switch value> 
+<#if isBig>Wow!</#if> </code></pre>
+<h4 id="10、switch-条件可为数字，可为字符串"><a href="#10、switch-条件可为数字，可为字符串" class="headerlink" title="10、switch (条件可为数字，可为字符串)"></a>10、switch (条件可为数字，可为字符串)</h4><pre class=" language-ftl"><code class="language-ftl"><#switch value> 
 <#case refValue1> 
 ....
 <#break> 
@@ -228,8 +227,8 @@ if 空值判断
 <#break> 
 <#default> 
 .... 
-</#switch><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="11、集合-amp-循环"><a href="#11、集合-amp-循环" class="headerlink" title="11、集合 &amp; 循环"></a>11、集合 &amp; 循环</h4><pre class="line-numbers language-ftl"><code class="language-ftl">// 遍历集合:
+</#switch></code></pre>
+<h4 id="11、集合-amp-循环"><a href="#11、集合-amp-循环" class="headerlink" title="11、集合 &amp; 循环"></a>11、集合 &amp; 循环</h4><pre class=" language-ftl"><code class="language-ftl">// 遍历集合:
 <#list empList! as emp> 
     ${emp.name!}
 </#list>
@@ -304,8 +303,8 @@ ${x?seq_index_of("blue")}  // 2
 //这个是按list中对象元素的[name]属性排序的，是升序，如果需要降序的话，如下所示：
 <#list movies?sort_by(["name"])?reverse as movie>
 　　<a href="${movie.url}">${movie.name}</a>
-</#list><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="12、Map对象"><a href="#12、Map对象" class="headerlink" title="12、Map对象"></a>12、Map对象</h4><pre class="line-numbers language-ftl"><code class="language-ftl">// 创建map
+</#list></code></pre>
+<h4 id="12、Map对象"><a href="#12、Map对象" class="headerlink" title="12、Map对象"></a>12、Map对象</h4><pre class=" language-ftl"><code class="language-ftl">// 创建map
 <#assign scores = {"语文":86,"数学":78}>
 
 // Map连接运算符
@@ -314,8 +313,8 @@ ${x?seq_index_of("blue")}  // 2
 // Map元素输出
 emp.name       // 全部使用点语法
 emp["name"]    // 使用方括号
-循环//遍历集合：<＃list empList！as emp>     ${emp.name！}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="13、FreeMarker支持如下转义字符"><a href="#13、FreeMarker支持如下转义字符" class="headerlink" title="13、FreeMarker支持如下转义字符:"></a>13、FreeMarker支持如下转义字符:</h4><pre class="line-numbers language-ftl"><code class="language-ftl">\" ：双引号(u0022)
+循环//遍历集合：<＃list empList！as emp>     ${emp.name！}</code></pre>
+<h4 id="13、FreeMarker支持如下转义字符"><a href="#13、FreeMarker支持如下转义字符" class="headerlink" title="13、FreeMarker支持如下转义字符:"></a>13、FreeMarker支持如下转义字符:</h4><pre class=" language-ftl"><code class="language-ftl">\" ：双引号(u0022)
 \' ：单引号(u0027)
 \\ ：反斜杠(u005C)
 \n ：换行(u000A)
@@ -331,18 +330,18 @@ emp["name"]    // 使用方括号
 
 如果某段文本中包含大量的特殊符号,FreeMarker提供了另一种特殊格式:可以在指定字符串内容的引号前增加r标记,在r标记后的文件将会直接输出.看如下代码:
 ${r"${foo}"} // 输出 ${foo}
-${r"C:/foo/bar"} // 输出 C:/foo/bar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="14、include指令"><a href="#14、include指令" class="headerlink" title="14、include指令"></a>14、include指令</h4><pre class="line-numbers language-ftl"><code class="language-ftl">// include指令的作用类似于JSP的包含指令:
+${r"C:/foo/bar"} // 输出 C:/foo/bar</code></pre>
+<h4 id="14、include指令"><a href="#14、include指令" class="headerlink" title="14、include指令"></a>14、include指令</h4><pre class=" language-ftl"><code class="language-ftl">// include指令的作用类似于JSP的包含指令:
 <#include "/test.ftl" encoding="UTF-8" parse=true>
 
 // 在上面的语法格式中,两个参数的解释如下:
 encoding="GBK"  // 编码格式
 parse=true 　　 // 是否作为ftl语法解析,默认是true，false就是以文本方式引入
-注意:在ftl文件里布尔值都是直接赋值的如parse=true,而不是parse="true"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="15、import指令"><a href="#15、import指令" class="headerlink" title="15、import指令"></a>15、import指令</h4><pre class="line-numbers language-ftl"><code class="language-ftl">// 类似于jsp里的import,它导入文件，然后就可以在当前文件里使用被导入文件里的宏组件
+注意:在ftl文件里布尔值都是直接赋值的如parse=true,而不是parse="true"</code></pre>
+<h4 id="15、import指令"><a href="#15、import指令" class="headerlink" title="15、import指令"></a>15、import指令</h4><pre class=" language-ftl"><code class="language-ftl">// 类似于jsp里的import,它导入文件，然后就可以在当前文件里使用被导入文件里的宏组件
 <#import "/libs/mylib.ftl" as my>
-// 上面的代码将导入/lib/common.ftl模板文件中的所有变量,交将这些变量放置在一个名为com的Map对象中，"my"在freemarker里被称作namespace<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h4 id="16、compress-压缩"><a href="#16、compress-压缩" class="headerlink" title="16、compress 压缩"></a>16、compress 压缩</h4><pre class="line-numbers language-ftl"><code class="language-ftl">// 用来压缩空白空间和空白的行 
+// 上面的代码将导入/lib/common.ftl模板文件中的所有变量,交将这些变量放置在一个名为com的Map对象中，"my"在freemarker里被称作namespace</code></pre>
+<h4 id="16、compress-压缩"><a href="#16、compress-压缩" class="headerlink" title="16、compress 压缩"></a>16、compress 压缩</h4><pre class=" language-ftl"><code class="language-ftl">// 用来压缩空白空间和空白的行 
 <#compress> 
     ... 
 </#compress>
@@ -352,8 +351,8 @@ parse=true 　　 // 是否作为ftl语法解析,默认是true，false就是以�
 
 <#rt>// 去掉右边空白和回车换行 
 
-<#nt>// 取消上面的效果<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="17、escape-noescape-对字符串进行HTML编码"><a href="#17、escape-noescape-对字符串进行HTML编码" class="headerlink" title="17、escape,noescape 对字符串进行HTML编码"></a>17、escape,noescape 对字符串进行HTML编码</h4><pre class="line-numbers language-ftl"><code class="language-ftl">// escape指令导致body区的插值都会被自动加上escape表达式,但不会影响字符串内的插值,
+<#nt>// 取消上面的效果</code></pre>
+<h4 id="17、escape-noescape-对字符串进行HTML编码"><a href="#17、escape-noescape-对字符串进行HTML编码" class="headerlink" title="17、escape,noescape 对字符串进行HTML编码"></a>17、escape,noescape 对字符串进行HTML编码</h4><pre class=" language-ftl"><code class="language-ftl">// escape指令导致body区的插值都会被自动加上escape表达式,但不会影响字符串内的插值,
     只会影响到body内出现的插值,使用escape指令的语法格式如下:
 <#escape x as x?html> 
 　　First name: ${firstName} 
@@ -364,8 +363,8 @@ parse=true 　　 // 是否作为ftl语法解析,默认是true，false就是以�
 // 相同表达式
 First name: ${firstName?html} 
 Last name: ${lastName} 
-Maiden name: ${maidenName?html}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="高级语法"><a href="#高级语法" class="headerlink" title="高级语法"></a>高级语法</h2><h4 id="1、global全局赋值语法"><a href="#1、global全局赋值语法" class="headerlink" title="1、global全局赋值语法"></a>1、global全局赋值语法</h4><pre class="line-numbers language-ftl"><code class="language-ftl"><#global name=value> 
+Maiden name: ${maidenName?html}</code></pre>
+<h4 id="2-1、global全局赋值语法"><a href="#2-1、global全局赋值语法" class="headerlink" title="2-1、global全局赋值语法"></a>2-1、global全局赋值语法</h4><pre class=" language-ftl"><code class="language-ftl"><#global name=value> 
 
 <#global name1=value1 name2=value2 ... nameN=valueN> 
 
@@ -375,8 +374,8 @@ Maiden name: ${maidenName?html}<span aria-hidden="true" class="line-numbers-rows
 
 // 利用这个语法给变量赋值，那么这个变量在所有的namespace中是可见的，
     如果这个变量被当前的assign语法覆盖如<#global x=2><#assign x=1>
-    在当前页面里x=2将被隐藏，或者通过${.globals.x} 来访问<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="2、setting-语法"><a href="#2、setting-语法" class="headerlink" title="2、setting 语法"></a>2、setting 语法</h4><pre class="line-numbers language-ftl"><code class="language-ftl">// 用来设置整个系统的一个环境 
+    在当前页面里x=2将被隐藏，或者通过${.globals.x} 来访问</code></pre>
+<h4 id="2-2、setting-语法"><a href="#2-2、setting-语法" class="headerlink" title="2-2、setting 语法"></a>2-2、setting 语法</h4><pre class=" language-ftl"><code class="language-ftl">// 用来设置整个系统的一个环境 
 locale // zh_CN 中文环境
 number_format 
 boolean_format 
@@ -390,9 +389,9 @@ classic_compatible
 // 假如当前是匈牙利的设置，然后修改成美国
 ${1.2} // 输出1,2
 <#setting locale="en_US"> 
-${1.2} // 输出1.2,因为匈牙利是采用", "作为十进制的分隔符，美国是用". "<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="3、macro宏指令"><a href="#3、macro宏指令" class="headerlink" title="3、macro宏指令"></a>3、macro宏指令</h4><p>例子1：</p>
-<pre class="line-numbers language-ftl"><code class="language-ftl"><#-- 定义宏 -->
+${1.2} // 输出1.2,因为匈牙利是采用", "作为十进制的分隔符，美国是用". "</code></pre>
+<h4 id="2-3、macro宏指令"><a href="#2-3、macro宏指令" class="headerlink" title="2-3、macro宏指令"></a>2-3、macro宏指令</h4><p>例子1：</p>
+<pre class=" language-ftl"><code class="language-ftl"><#-- 定义宏 -->
 <#macro test foo bar="Bar" baaz=-1> 
 　　Text: ${foo}, ${bar}, ${baaz}
 </#macro>
@@ -401,9 +400,9 @@ ${1.2} // 输出1.2,因为匈牙利是采用", "作为十进制的分隔符，�
 <@test foo="a" bar="b" baaz=5*5/>  // 输出：Text: a, b, 25
 <@test foo="a" bar="b"/>    　　　　// 输出：Text: a, b, -1
 <@test foo="a" baaz=5*5-2/> 　　　　// 输出：Text: a, Bar, 23
-<@test foo="a"/>                   // 输出：Text: a, Bar, -1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<@test foo="a"/>                   // 输出：Text: a, Bar, -1</code></pre>
 <p>例子2：</p>
-<pre class="line-numbers language-ftl"><code class="language-ftl"><#-- 定义一个循环输出的宏 -->
+<pre class=" language-ftl"><code class="language-ftl"><#-- 定义一个循环输出的宏 -->
 <#macro list title items> 
 　　${title}
 　　<#list items as x>
@@ -413,9 +412,9 @@ ${1.2} // 输出1.2,因为匈牙利是采用", "作为十进制的分隔符，�
 
 <#-- 使用宏 -->
 <@list items=["mouse", "elephant", "python"] title="Animals"/>
-// 输出Animals *mouse *elephant *python<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+// 输出Animals *mouse *elephant *python</code></pre>
 <p>例子3：</p>
-<pre class="line-numbers language-ftl"><code class="language-ftl"><#-- 嵌套宏 -->
+<pre class=" language-ftl"><code class="language-ftl"><#-- 嵌套宏 -->
 <#macro border>
 　　<table>
 　　　　<#nested>
@@ -429,9 +428,9 @@ ${1.2} // 输出1.2,因为匈牙利是采用", "作为十进制的分隔符，�
 输出结果：
 <table>
 　　<tr><td>hahaha</td></tr>
-</table><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</table></code></pre>
 <p>例子4：在nested指令中使用循环变量时,可以使用多个循环变量,看如下代码</p>
-<pre class="line-numbers language-ftl"><code class="language-ftl"><#-- 循环嵌套宏 -->
+<pre class=" language-ftl"><code class="language-ftl"><#-- 循环嵌套宏 -->
 <#macro repeat count>
 　　<#list 1..count as x>
 　　　　<#nested x, x/2, x==count> // 使用nested指令时指定了三个循环变量
@@ -448,8 +447,8 @@ ${1.2} // 输出1.2,因为匈牙利是采用", "作为十进制的分隔符，�
 // 3. 1.5
 // 4. 2 Last!
 freemarker 宏嵌套nested 的使用:
-http://blog.sina.com.cn/s/blog_7e5699790100z59g.html  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="4、结束macro指令"><a href="#4、结束macro指令" class="headerlink" title="4、结束macro指令"></a>4、结束macro指令</h4><pre class="line-numbers language-ftl"><code class="language-ftl">// return指令用于结束macro指令
+http://blog.sina.com.cn/s/blog_7e5699790100z59g.html  </code></pre>
+<h4 id="2-4、结束macro指令"><a href="#2-4、结束macro指令" class="headerlink" title="2-4、结束macro指令"></a>2-4、结束macro指令</h4><pre class=" language-ftl"><code class="language-ftl">// return指令用于结束macro指令
 <#-- 创建宏 -->
 <#macro book>
 　　spring
@@ -459,7 +458,7 @@ http://blog.sina.com.cn/s/blog_7e5699790100z59g.html  <span aria-hidden="true" c
 
 <#-- 使用宏 -->
 <@book />
-// 上面的代码输出:spring,而j2ee位于return指令之后,不会输出.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+// 上面的代码输出:spring,而j2ee位于return指令之后,不会输出.</code></pre>
 
 	</div>
 	<div class="post-nav">
@@ -485,7 +484,7 @@ http://blog.sina.com.cn/s/blog_7e5699790100z59g.html  <span aria-hidden="true" c
 	<div class="toc-top">
 		文章目录
 	</div>
-	<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础语法"><span class="toc-text">基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、字符输出"><span class="toc-text">1、字符输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2，日期输出"><span class="toc-text">2，日期输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3，数字输出（以数字20为例）"><span class="toc-text">3，数字输出（以数字20为例）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4，申明变量"><span class="toc-text">4，申明变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5，比运算算符"><span class="toc-text">5，比运算算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6，算术运算符"><span class="toc-text">6，算术运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7，逻辑运算符"><span class="toc-text">7，逻辑运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8，FreeMarker中的运算符优先级如下（由高到低排列）"><span class="toc-text">8，FreeMarker中的运算符优先级如下（由高到低排列）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9，if逻辑判断（注意：elseif不加空格）"><span class="toc-text">9，if逻辑判断（注意：elseif不加空格）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10、switch-条件可为数字，可为字符串"><span class="toc-text">10、switch (条件可为数字，可为字符串)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11、集合-amp-循环"><span class="toc-text">11、集合 &amp; 循环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12、Map对象"><span class="toc-text">12、Map对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13、FreeMarker支持如下转义字符"><span class="toc-text">13、FreeMarker支持如下转义字符:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14、include指令"><span class="toc-text">14、include指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15、import指令"><span class="toc-text">15、import指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16、compress-压缩"><span class="toc-text">16、compress 压缩</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17、escape-noescape-对字符串进行HTML编码"><span class="toc-text">17、escape,noescape 对字符串进行HTML编码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高级语法"><span class="toc-text">高级语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、global全局赋值语法"><span class="toc-text">1、global全局赋值语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、setting-语法"><span class="toc-text">2、setting 语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、macro宏指令"><span class="toc-text">3、macro宏指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、结束macro指令"><span class="toc-text">4、结束macro指令</span></a></li></ol></li></ol></li></ol>
+	<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础语法"><span class="toc-text">基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、字符输出"><span class="toc-text">1、字符输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2，日期输出"><span class="toc-text">2，日期输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3，数字输出（以数字20为例）"><span class="toc-text">3，数字输出（以数字20为例）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4，申明变量"><span class="toc-text">4，申明变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5，比运算算符"><span class="toc-text">5，比运算算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6，算术运算符"><span class="toc-text">6，算术运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7，逻辑运算符"><span class="toc-text">7，逻辑运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8，FreeMarker中的运算符优先级如下（由高到低排列）"><span class="toc-text">8，FreeMarker中的运算符优先级如下（由高到低排列）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9，if逻辑判断（注意：elseif不加空格）"><span class="toc-text">9，if逻辑判断（注意：elseif不加空格）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10、switch-条件可为数字，可为字符串"><span class="toc-text">10、switch (条件可为数字，可为字符串)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11、集合-amp-循环"><span class="toc-text">11、集合 &amp; 循环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12、Map对象"><span class="toc-text">12、Map对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13、FreeMarker支持如下转义字符"><span class="toc-text">13、FreeMarker支持如下转义字符:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14、include指令"><span class="toc-text">14、include指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15、import指令"><span class="toc-text">15、import指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16、compress-压缩"><span class="toc-text">16、compress 压缩</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17、escape-noescape-对字符串进行HTML编码"><span class="toc-text">17、escape,noescape 对字符串进行HTML编码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1、global全局赋值语法"><span class="toc-text">2-1、global全局赋值语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2、setting-语法"><span class="toc-text">2-2、setting 语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3、macro宏指令"><span class="toc-text">2-3、macro宏指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4、结束macro指令"><span class="toc-text">2-4、结束macro指令</span></a></li></ol></li></ol></li></ol>
 </div>
 
 
