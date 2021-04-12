@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>用NodeJS写接口</title>
+      <link href="/2021/03/07/%E7%94%A8NodeJS%E5%86%99%E6%8E%A5%E5%8F%A3/"/>
+      <url>/2021/03/07/%E7%94%A8NodeJS%E5%86%99%E6%8E%A5%E5%8F%A3/</url>
+      
+        <content type="html"><![CDATA[<h1 id="用NodeJS写接口"><a href="#用NodeJS写接口" class="headerlink" title="用NodeJS写接口"></a>用NodeJS写接口</h1><blockquote></blockquote><h3 id="创建-Node-js-应用"><a href="#创建-Node-js-应用" class="headerlink" title="创建 Node.js 应用"></a><strong>创建 Node.js 应用</strong></h3><h5 id="步骤一、引入-required-模块"><a href="#步骤一、引入-required-模块" class="headerlink" title="步骤一、引入 required 模块"></a>步骤一、引入 required 模块</h5><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 我们使用 require 指令来载入 http 模块，并将实例化的 HTTP 赋值给变量 http</span><span class="token keyword">var</span> http <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"http"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><h5 id="步骤二、创建服务器"><a href="#步骤二、创建服务器" class="headerlink" title="步骤二、创建服务器"></a><strong>步骤二、创建服务器</strong></h5><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 使用 http.createServer() 方法创建服务器,listen方法绑定端口。函数通过 request, response 参数来接收和响应数据。</span>http<span class="token punctuation">.</span><span class="token function">createServer</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">// 发送 HTTP 头部 </span>    <span class="token comment" spellcheck="true">// HTTP 状态值: 200 : OK</span>    <span class="token comment" spellcheck="true">// 内容类型: text/plain</span>    response<span class="token punctuation">.</span><span class="token function">writeHead</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string">'Content-Type'</span><span class="token punctuation">:</span> <span class="token string">'text/plain'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 发送响应数据 "Hello World"</span>    response<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token string">'Hello World\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">8888</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 终端打印如下信息</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Server running at http://127.0.0.1:8888/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker从入门到实践</title>
       <link href="/2020/06/01/docker/"/>
       <url>/2020/06/01/docker/</url>
